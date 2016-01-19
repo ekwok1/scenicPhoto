@@ -4,7 +4,8 @@ app.config(["$routeProvider", "$locationProvider",
   function($routeProvider, $locationProvider){
     $routeProvider
       .when('/', {
-        template: '<h1>TEST</h1>'
+        templateUrl: 'templates/home.html',
+        controller: 'SLController'
       })
       .otherwise({ redirectTo: '/' });
 
