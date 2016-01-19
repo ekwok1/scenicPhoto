@@ -21,7 +21,7 @@ router.post("/login", function(req, res){
 });
 
 // API routes for development
-router.get("/users", function(req, res){
+router.get("/", function(req, res){
   db.User.find({}, function(err, user){
     if (err) return res.status(400).send(err);
     return res.status(200).json(user);
@@ -29,7 +29,7 @@ router.get("/users", function(req, res){
 });
 
 router.delete("/:id", function(req, res){
-  db.User.findById(req.params.id, function(err, user){
+  db.User.findByIdAndRemove(req.params.id, function(err, user){
     if (err) return res.status(500).send(err);
     if (!user) return res.status(401).send(err);
     return res.status(200).json(user);
