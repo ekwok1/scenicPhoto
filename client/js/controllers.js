@@ -1,5 +1,5 @@
-app.controller('SLController', ['$scope', 
-  function($scope){
+app.controller('SLController', ['$scope', 'userService', '$location',
+  function($scope, userService, $location){
     $scope.view = {};
     $scope.view.showSignupForm = true;
     $scope.view.showLoginForm = false;
@@ -10,11 +10,21 @@ app.controller('SLController', ['$scope',
     };
 
     $scope.signup = function(newUser){
-      // need to write userService
+      userService.signup(newUser).then(function(data){
+        userService.setCurrentUser(data);
+        $location.path("/photos");
+      }, function(err){
+        $scope.view.errors = err;
+      });
     };
 
     $scope.login = function(user){
-      // need to write userService
+      userService.login(user).then(function(data){
+        userService.setCurrentUser(data);
+        $location.path("/photos");
+      }, function(err){
+        $scope.view.errors = err;
+      });
     };
   }
 ]);
