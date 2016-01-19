@@ -1,7 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
 /*HOMEPAGE*/
-#rightPanel {
-  margin-left: -35px;
-}
 
 #homeBackground {
   margin-top: -21px;
@@ -9,6 +9,47 @@
   width: 100%;
 }
 
+#rightPanel {
+  margin-left: -35px;
+}
+
+#homeTitle {
+  font-family: "Dancing Script";
+  font-size: 600%;
+  text-align: center;
+  margin-top: 15px;
+}
+
+#hr {
+  color: black;
+  background-color: black;
+  height: 3px;
+  margin-bottom: 23px;
+}
+
 #sellingPoints {
   margin-bottom: 20px;
 }
+
+#homeWhatTitle {
+  font-size: 215%;
+  font-family: "Poiret One";
+}
+
+#homeWhat {
+  margin-top: 10px;
+  font-size: 130%;
+  font-family: "Poiret One";
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
