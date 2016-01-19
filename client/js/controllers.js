@@ -14,7 +14,8 @@ app.controller('SLController', ['$scope', 'userService', '$location',
         userService.setCurrentUser(data);
         $location.path("/photos");
       }, function(err){
-        $scope.view.errors = err;
+        $scope.view.sErrors = err;
+        $scope.newUser = {};
       });
     };
 
@@ -23,7 +24,8 @@ app.controller('SLController', ['$scope', 'userService', '$location',
         userService.setCurrentUser(data);
         $location.path("/photos");
       }, function(err){
-        $scope.view.errors = err;
+        $scope.view.lErrors = err;
+        $scope.newUser = {};
       });
     };
   }
