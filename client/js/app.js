@@ -7,6 +7,10 @@ app.config(["$routeProvider", "$locationProvider",
         templateUrl: 'templates/home.html',
         controller: 'SLController'
       })
+      .when('/photos', {
+        templateUrl: 'templates/photos.html',
+        controller: 'PhotosController'
+      })
       .otherwise({ redirectTo: '/home' });
 
     $locationProvider.html5Mode(true);

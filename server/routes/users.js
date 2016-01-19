@@ -5,7 +5,7 @@ var auth = require("../middleware/auth.js");
 var tokenLib = require("../lib/token.js");
 var token;
 
-router.use(auth.checkHeaders);
+// router.use(auth.checkHeaders);
 
 // API routes for app
 router.post("/signup", function(req, res){

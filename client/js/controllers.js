@@ -28,3 +28,9 @@ app.controller('SLController', ['$scope', 'userService', '$location',
     };
   }
 ]);
+
+app.controller('PhotosController', ['$scope', 
+  function($scope){
+    $scope.test = "THIS IS A TEST";
+  }
+]);
