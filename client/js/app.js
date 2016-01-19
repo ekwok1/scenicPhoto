@@ -1,7 +1,7 @@
 var app = angular.module("scenicPhoto", ['ngRoute']);
 
-app.config(["$routeProvider", "$locationProvider", 
-  function($routeProvider, $locationProvider){
+app.config(["$routeProvider", "$locationProvider", "$httpProvider",
+  function($routeProvider, $locationProvider, $httpProvider){
     $routeProvider
       .when('/home', {
         templateUrl: 'templates/home.html',
@@ -14,6 +14,8 @@ app.config(["$routeProvider", "$locationProvider",
       .otherwise({ redirectTo: '/home' });
 
     $locationProvider.html5Mode(true);
+
+    $httpProvider.interceptors.push("AuthInterceptor");
   }
 ]);
 
