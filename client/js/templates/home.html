@@ -12,8 +12,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a>Signup</a></li>
-        <li><a>Login</a></li>
+        <li><a ng-show="view.showLoginForm" ng-click="toggleForm()">Signup</a></li>
+        <li><a ng-show="view.showSignupForm" ng-click="toggleForm()">Login</a></li>
       </ul>
     </div>
   </div>
@@ -35,7 +35,7 @@
       </div>
 
       <!-- signup form -->
-      <form class="form-horizontal">
+      <form class="form-horizontal" ng-show="view.showSignupForm" ng-submit="signup(newUser)">
         <fieldset>
           <legend>Sign Up</legend>
           <div class="form-group">
@@ -57,7 +57,30 @@
           </div>
         </fieldset>
       </form>
-      
+
+      <!-- login form -->
+      <form class="form-horizontal" ng-show="view.showLoginForm" ng-submit="login(user)">
+        <fieldset>
+          <legend>Log In</legend>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Username</label>
+            <div class="col-md-10">
+              <input type="text" class="form-control" ng-model="user.username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">Password</label>
+            <div class="col-md-10">
+              <input type="password" class="form-control" ng-model="user.password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
 
     </div>
   </div>
