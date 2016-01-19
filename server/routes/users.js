@@ -30,7 +30,7 @@ router.post("/login", function(req, res){
 // API routes for development
 router.get("/", function(req, res){
   db.User.find({}, function(err, user){
-    if (err) return res.status(400).send(err);
+    if (err) return res.status(500).send(err);
     return res.status(200).json(user);
   });
 });
