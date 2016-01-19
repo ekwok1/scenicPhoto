@@ -18,3 +18,5 @@ router.post("/login", function(req, res){
     return res.json({user: listedItems});
   });
 });
+
+module.exports = router;
