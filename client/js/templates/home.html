@@ -45,8 +45,7 @@
           <legend>Sign Up</legend>
           <!-- error alert -->
           <div class="alert alert-warning" ng-show="view.sErrors">
-            <h4>Warning!</h4>
-            <p>{{view.sErrors.data}}</p>
+            <div><strong>Warning!</strong> <span>{{view.sErrors}}</span></div>
           </div>
 
           <div class="form-group">
@@ -76,7 +75,7 @@
           <!-- error alert -->
           <div class="alert alert-warning" ng-show="view.lErrors">
             <h4>Warning!</h4>
-            <p>{{view.lErrors.data}}</p>
+            <p>{{view.lErrors}}</p>
           </div>
 
           <div class="form-group">

@@ -15,9 +15,9 @@
 
 #homeTitle {
   font-family: "Dancing Script";
-  font-size: 600%;
+  font-size: 525%;
   text-align: center;
-  margin-top: 15px;
+  margin-top: -20px;
 }
 
 #hr {
@@ -32,13 +32,13 @@
 }
 
 #homeWhatTitle {
-  font-size: 215%;
+  font-size: 190%;
   font-family: "Poiret One";
 }
 
 #homeWhat {
   margin-top: 10px;
-  font-size: 130%;
+  font-size: 120%;
   font-family: "Poiret One";
   margin-bottom: 20px;
 }

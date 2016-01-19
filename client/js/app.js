@@ -26,6 +26,10 @@ app.service("AuthInterceptor", ['$window', '$location', '$q',
     return {
       request: function(config){
         config.headers['X-Requested-With'] = 'XMLHttpRequest';
+        var token = $window.localStorage.getItem("token");
+        if (token) {
+          config.headers.Authorization = "Bearer " + token;
+        }
         return $q.resolve(config);
       },
       responseError: function(err){
@@ -47,7 +51,8 @@ app.service("AuthInterceptor", ['$window', '$location', '$q',
 app.run(['$rootScope', '$location', '$window', 
   function($rootScope, $location, $window){
     $rootScope.$on("$routeChangeStart", function(event, next, current){
-      if (next.restricted && !$window.localStorage.getItem("token")){
+      if (next.restricted && $window.localStorage.getItem("token")==="undefined"){
+        $window.localStorage.clear();
         $location.path("/home");
       }
       if (next.preventWhenLoggedIn && $window.localStorage.getItem("token")){
@@ -56,10 +61,6 @@ app.run(['$rootScope', '$location', '$window',
     });
   }
 ]);
-
-
-
-
 
 
 
