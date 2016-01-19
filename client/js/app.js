@@ -11,7 +11,7 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
       .when('/photos', {
         templateUrl: 'templates/photos.html',
         controller: 'PhotosController',
-        restrict: true
+        restricted: true
       })
       .otherwise({ redirectTo: '/home' });
 
@@ -46,7 +46,7 @@ app.service("AuthInterceptor", ['$window', '$location', '$q',
 
 app.run(['$rootScope', '$location', '$window', 
   function($rootScope, $location, $window){
-    $rootScope.on("$routeChangeStart", function(event, next, current){
+    $rootScope.$on("$routeChangeStart", function(event, next, current){
       if (next.restricted && !$window.localStorage.getItem("token")){
         $location.path("/home");
       }
