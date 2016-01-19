@@ -1,13 +1,16 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+var tokenLib = require("../lib/token.js");
+var token;
 
 // API routes for app
 router.post("/signup", function(req, res){
   db.User.create(req.body, function(err, user){
     if (err) return res.status(400).send("Username/Password can't be blank AND Username must be unique.");
     var listedItems = {id: user._id, username: user.username};
-    return res.json({user: listedItems});
+    token = tokenLib.sign(user._id);
+    return res.json({token: token, user: listedItems});
   });
 });
 
@@ -16,7 +19,8 @@ router.post("/login", function(req, res){
     if (err) return res.status(400).send(err);
     if (!user) return res.status(400).send("Username or Password is invalid");
     var listedItems = {id: user._id, username: user.username};
-    return res.json({user: listedItems});
+    token = tokenLib.sign(user._id);
+    return res.json({token: token, user: listedItems});
   });
 });
 

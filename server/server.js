@@ -5,7 +5,6 @@ var morgan = require("morgan");
 var bodyParser = require("body-parser");
 var routes = require("./routes/users.js");
 
-
 // app.use
 app.use("/css", express.static(path.join(__dirname, '../client/css')));
 app.use("/js", express.static(path.join(__dirname, '../client/js')));
