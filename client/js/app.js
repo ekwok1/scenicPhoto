@@ -19,7 +19,7 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
   }
 ]);
 
-app.service("AuthInterceptor", ['$window', '$location', '$q', 'userService',
+app.service("AuthInterceptor", ['$window', '$location', '$q',
   function($window, $location, $q){
     return {
       request: function(config){
@@ -28,7 +28,7 @@ app.service("AuthInterceptor", ['$window', '$location', '$q', 'userService',
       },
       responseError: function(err){
         if(err.data === "invalid token" || err.data === "invalid signature" || err.data === "jwt malformed"){
-          userService.logout();
+          $window.localStorage.clear();
           $location.path("/home");
           return $q.resolve(err);
         }
