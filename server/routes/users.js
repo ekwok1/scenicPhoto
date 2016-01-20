@@ -35,7 +35,9 @@ router.post("/:id/photos", function(req, res){
     db.Photo.create(req.body, function(err, photo){
       if (err) return res.status(500).send(err);
       user.photos.push(photo);
+      photo.user = user;
       user.save();
+      photo.save();
       return res.status(200).json(photo);
     });
   });
