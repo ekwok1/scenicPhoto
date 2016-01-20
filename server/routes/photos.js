@@ -27,8 +27,10 @@ router.route("/:id")
     });
   })
   .delete(function(req, res){
-    db.Photo.findByIdAndRemove(req.params.id, function(err, photo){
+    db.Photo.findById(req.params.id, function(err, photo){
       if (err) return res.status(500).send(err);
+      if (!photo) return res.status(401).send(err);
+      photo.remove();
       return res.json(photo);
     });
   });

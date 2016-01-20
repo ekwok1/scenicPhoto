@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var db = require("./index.js");
 
 var photoSchema = new mongoose.Schema({
   photoUrl: {
@@ -17,6 +18,19 @@ var photoSchema = new mongoose.Schema({
 
 var Photo = mongoose.model("Photo", photoSchema);
 
-module.exports = Photo;
+photoSchema.pre('remove', function(next){
 
-var bookmarks;
+  // how does the res work here?
+  var photo = this;
+  var photoId = photo._id;
+  var userId = photo.user;
+  db.User.findOne({ '_id': userId }, function(err, user){
+    var index = user.photos.indexOf(photoId);
+    user.photos.splice(index, 1);
+    user.save();
+    next();
+  });
+
+});
+
+module.exports = Photo;
