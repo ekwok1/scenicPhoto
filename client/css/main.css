@@ -5,7 +5,7 @@
 
 #homeBackground {
   margin-top: -21px;
-  margin-left: -29px;
+  margin-left: -30px;
   width: 100%;
 }
 
@@ -17,14 +17,15 @@
   font-family: "Dancing Script";
   font-size: 525%;
   text-align: center;
-  margin-top: -20px;
+  margin-top: -26px;
 }
 
 #hr {
   color: black;
   background-color: black;
   height: 3px;
-  margin-bottom: 23px;
+  margin-top: -5px;
+  margin-bottom: 15px;
 }
 
 #sellingPoints {
@@ -38,7 +39,7 @@
 
 #homeWhat {
   margin-top: 10px;
-  font-size: 120%;
+  font-size: 140%;
   font-family: "Poiret One";
   margin-bottom: 20px;
 }

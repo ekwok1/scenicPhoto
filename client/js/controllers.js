@@ -19,7 +19,9 @@ app.controller('SLController', ['$scope', 'userService', '$location',
       userService.signup(newUser).then(function(data){
         userService.setCurrentUser(data);
         $location.path("/photos");
-        $scope.view.sErrors = data.data;
+        if (data.status===400){
+          $scope.view.sErrors = data.data;
+        }
         $scope.newUser = {};
       });
     };
@@ -28,7 +30,9 @@ app.controller('SLController', ['$scope', 'userService', '$location',
       userService.login(user).then(function(data){
         userService.setCurrentUser(data);
         $location.path("/photos");
-        $scope.view.lErrors = data.data;
+        if (data.status===400){
+          $scope.view.lErrors = data.data;
+        }
         $scope.user = {};
       });
     };
