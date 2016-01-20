@@ -26,7 +26,9 @@ app.service("photoService", ['$http',
   function($http){
     return {
       getPhotos: function(){
-        return $http.get("/api/photos");
+        return $http.get("/api/photos").then(function(photos){
+          return photos.data;
+        });
       }
     };
   }

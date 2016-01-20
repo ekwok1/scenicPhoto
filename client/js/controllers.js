@@ -41,13 +41,24 @@ app.controller('SLController', ['$scope', 'userService', '$location',
 
 app.controller('PhotosController', ['$scope', 'userService', '$location', 'currentUser', 'photos',
   function($scope, userService, $location, currentUser, photos){
+
+    $scope.view = {};
+    $scope.view.showPhotoForm = false;
     
     $scope.currentUser = currentUser;
-    $scope.photos = photos.data;
+    $scope.photos = photos;
+
+    $scope.toggleForm = function(){
+      $scope.view.showPhotoForm = !$scope.view.showPhotoForm;
+    };
 
     $scope.logout = function(){
       userService.logout();
       $location.path("/home");
+    };
+
+    $scope.post = function(newPhoto){
+
     };
 
   }
