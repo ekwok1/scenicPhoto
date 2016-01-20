@@ -39,10 +39,11 @@ app.controller('SLController', ['$scope', 'userService', '$location',
   }
 ]);
 
-app.controller('PhotosController', ['$scope', 'userService', '$location', 'currentUser',
-  function($scope, userService, $location, currentUser){
+app.controller('PhotosController', ['$scope', 'userService', '$location', 'currentUser', 'photos',
+  function($scope, userService, $location, currentUser, photos){
     
     $scope.currentUser = currentUser;
+    $scope.photos = photos.data;
 
     $scope.logout = function(){
       userService.logout();

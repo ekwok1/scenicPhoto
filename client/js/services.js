@@ -21,3 +21,13 @@ app.service("userService", ['$http', '$window',
     };
   }
 ]);
+
+app.service("photoService", ['$http', 
+  function($http){
+    return {
+      getPhotos: function(){
+        return $http.get("/api/photos");
+      }
+    };
+  }
+]);

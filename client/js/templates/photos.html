@@ -28,3 +28,38 @@
     </div>
   </div>
 </nav>
+
+<div class="container-fluid">
+  <div id="photoForm">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Post New Photo</legend>
+        <!-- error dismissable alert -->
+        <div class="alert alert-dismissble alert-warning">
+          <button type="button" class="close">X</button>
+          <div><strong>Warning!</strong></div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Photo Url</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" ng-model="newPhoto.photoUrl">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Description</label>
+          <div class="col-md-10">
+            <textarea class="form-control" rows="2" ng-model="newPhoto.description"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary">Post</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+{{photos}}

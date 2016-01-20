@@ -15,6 +15,9 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         resolve: {
           currentUser: ['userService', function(userService){
             return userService.getCurrentUser();
+          }],
+          photos: ['photoService', function(photoService){
+            return photoService.getPhotos();
           }]
         }
       })
