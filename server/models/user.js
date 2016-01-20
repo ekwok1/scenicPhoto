@@ -11,7 +11,11 @@ var userSchema = new mongoose.Schema({
   password:{
     type:String,
     required: true
-  }
+  },
+  photos:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Photo"
+  }]
 });
 
 userSchema.pre('save', function(next) {

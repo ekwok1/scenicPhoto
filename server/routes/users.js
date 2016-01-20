@@ -10,7 +10,7 @@ router.use(auth.checkHeaders);
 // API routes for app
 router.post("/signup", function(req, res){
   db.User.create(req.body, function(err, user){
-    if (err) return res.status(400).send(err);
+    if (err) return res.status(400).send("Username/Password can't be blank OR Username is taken");
     var listedItems = {id: user._id, username: user.username};
     token = tokenLib.sign(user._id);
     return res.json({token: token, user: listedItems});
