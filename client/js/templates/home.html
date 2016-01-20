@@ -43,8 +43,9 @@
       <form class="form-horizontal" ng-show="view.showSignupForm" ng-submit="signup(newUser)">
         <fieldset>
           <legend>Sign Up</legend>
-          <!-- error alert -->
-          <div class="alert alert-warning" ng-show="view.sErrors">
+          <!-- error dismissable alert -->
+          <div class="alert alert-dismissble alert-warning" ng-show="view.sErrors">
+            <button type="button" class="close" ng-click="resetAlert()">X</button>
             <div><strong>Warning!</strong> <span>{{view.sErrors}}</span></div>
           </div>
 
@@ -72,10 +73,10 @@
       <form class="form-horizontal" ng-show="view.showLoginForm" ng-submit="login(user)">
         <fieldset>
           <legend>Log In</legend>
-          <!-- error alert -->
-          <div class="alert alert-warning" ng-show="view.lErrors">
-            <h4>Warning!</h4>
-            <p>{{view.lErrors}}</p>
+          <!-- error dismissable alert -->
+          <div class="alert alert-dismissble alert-warning" ng-show="view.lErrors">
+            <button type="button" class="close" ng-click="resetAlert()">X</button>
+            <div><strong>Warning!</strong> <span>{{view.lErrors}}</span></div>
           </div>
 
           <div class="form-group">

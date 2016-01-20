@@ -77,8 +77,3 @@ app.run(['$rootScope', '$location', '$window',
 
 
 
-
-
-
-
-
