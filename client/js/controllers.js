@@ -12,7 +12,7 @@ app.controller('SLController', ['$scope', 'userService', '$location',
     $scope.toggleForm = function(){
       $scope.view.showSignupForm = !$scope.view.showSignupForm;
       $scope.view.showLoginForm = !$scope.view.showLoginForm;
-      resetAlert();
+      $scope.resetAlert();
     };
 
     $scope.signup = function(newUser){
