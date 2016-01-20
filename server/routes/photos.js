@@ -14,7 +14,7 @@ router.route("/")
   .get(function(req, res){
     db.Photo.find({}, function(err, photo){
       if (err) return res.status(500).send(err);
-      return res.json(photo);
+      return res.status(200).json(photo);
     });
   });
 
@@ -23,7 +23,7 @@ router.route("/:id")
     db.Photo.findById(req.params.id, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);
-      return res.json(photo);
+      return res.status(200).json(photo);
     });
   })
   .delete(function(req, res){
@@ -31,7 +31,7 @@ router.route("/:id")
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);
       photo.remove();
-      return res.json(photo);
+      return res.status(200).json(photo);
     });
   });
 

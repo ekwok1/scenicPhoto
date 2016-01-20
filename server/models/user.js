@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var db = require("./index.js");
 var bcrypt = require("bcrypt");
 var SALT_WORK_FACTOR = 10;
 
@@ -37,6 +38,17 @@ userSchema.pre('save', function(next) {
       next();
     });
   });
+});
+
+userSchema.pre('remove', function(next){
+  var user = this;
+  var photos = user.photos;
+  photos.forEach(function(photoId){
+    db.Photo.findOne({ '_id': photoId }, function(err, photo){
+      photo.remove();
+    });
+  });
+  next();
 });
 
 userSchema.statics.authenticate = function (formData, callback) {

@@ -13,7 +13,7 @@ router.post("/signup", function(req, res){
     if (err) return res.status(400).send("Username/Password can't be blank OR Username is taken");
     var listedItems = {id: user._id, username: user.username};
     token = tokenLib.sign(user._id);
-    return res.json({token: token, user: listedItems});
+    return res.status(200).json({token: token, user: listedItems});
   });
 });
 
@@ -23,7 +23,7 @@ router.post("/login", function(req, res){
     if (!user) return res.status(400).send("Username or Password is invalid");
     var listedItems = {id: user._id, username: user.username};
     token = tokenLib.sign(user._id);
-    return res.json({token: token, user: listedItems});
+    return res.status(200).json({token: token, user: listedItems});
   });
 });
 
@@ -52,9 +52,10 @@ router.get("/", function(req, res){
 });
 
 router.delete("/:id", function(req, res){
-  db.User.findByIdAndRemove(req.params.id, function(err, user){
+  db.User.findById(req.params.id, function(err, user){
     if (err) return res.status(500).send(err);
     if (!user) return res.status(401).send(err);
+    user.remove();
     return res.status(200).json(user);
   });
 });
