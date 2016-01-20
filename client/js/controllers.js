@@ -39,8 +39,9 @@ app.controller('SLController', ['$scope', 'userService', '$location',
   }
 ]);
 
-app.controller('PhotosController', ['$scope', 'userService', '$location', 'currentUser', 'photos',
-  function($scope, userService, $location, currentUser, photos){
+app.controller('PhotosController', 
+  ['$scope', '$location', 'userService', 'currentUser', 'photos', 'photoService',
+  function($scope, $location, userService, currentUser, photos, photoService){
 
     $scope.view = {};
     $scope.view.showPhotoForm = false;
@@ -58,7 +59,11 @@ app.controller('PhotosController', ['$scope', 'userService', '$location', 'curre
     };
 
     $scope.post = function(newPhoto){
-
+      photoService.postPhoto(newPhoto).then(function(photo){
+        $scope.newPhoto = {};
+        $scope.photos.push(photo);
+        $scope.view.showPhotoForm = false;
+      });
     };
 
   }
