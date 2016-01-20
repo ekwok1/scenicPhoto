@@ -14,6 +14,9 @@ app.service("userService", ['$http', '$window',
       },
       logout: function(){
         $window.localStorage.clear();
+      },
+      getCurrentUser: function(){
+        return JSON.parse($window.localStorage.getItem("user"));
       }
     };
   }

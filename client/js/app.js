@@ -11,7 +11,12 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
       .when('/photos', {
         templateUrl: 'templates/photos.html',
         controller: 'PhotosController',
-        restricted: true
+        restricted: true,
+        resolve: {
+          currentUser: ['userService', function(userService){
+            return userService.getCurrentUser();
+          }]
+        }
       })
       .otherwise({ redirectTo: '/home' });
 
