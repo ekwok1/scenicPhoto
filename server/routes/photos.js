@@ -9,7 +9,6 @@ router.use(auth.checkHeaders);
 // GET all photos FOR photofeed (/api/photos)
 // GET one photo FOR comment page (/api/photos/:id)
 // DELETE one photo (/api/photos/:id)
-// POST new photo (/api/users/:id/photos)
 
 router.route("/")
   .get(function(req, res){
