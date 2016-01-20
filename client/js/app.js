@@ -51,7 +51,11 @@ app.service("AuthInterceptor", ['$window', '$location', '$q',
 app.run(['$rootScope', '$location', '$window', 
   function($rootScope, $location, $window){
     $rootScope.$on("$routeChangeStart", function(event, next, current){
-      if (next.restricted && $window.localStorage.getItem("token")==="undefined"){
+      if (next.restricted && !$window.localStorage.getItem("token")){
+        $window.localStorage.clear();
+        $location.path("/home");
+      }
+      if (next.restricted && $window.localStorage.getItem("token") === "undefined"){
         $window.localStorage.clear();
         $location.path("/home");
       }
