@@ -50,6 +50,8 @@ router.route("/users/:id/photos")
     });
   });
 
+module.exports = router;
+
 
 
 
