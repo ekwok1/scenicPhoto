@@ -7,7 +7,8 @@ router.use(auth.checkHeaders);
 
 // API routes for photos: 
 // GET all photos FOR photofeed (/api/photos)
-// GET one photo FOR comment page (/api/photos/:id)
+// GET one photo FOR show page (/api/photos/:id)
+// PUT one photo FOR show page (/api/photos/:id)
 // DELETE one photo (/api/photos/:id)
 
 router.route("/")

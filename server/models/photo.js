@@ -27,7 +27,11 @@ var photoSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
-  }
+  },
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Comment"
+  }]
 });
 
 var Photo = mongoose.model("Photo", photoSchema);
