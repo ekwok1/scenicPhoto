@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li ng-click="toggleForm()"><a>Edit Photo</a></li>
+        <li data-toggle="modal" data-target="#deleteModal"><a>Delete Photo</a></li>
         <li ng-hide="view.showCommentPanel" ng-click="toggleComment()"><a>See Comments</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button">Resources <span class="caret"></span></a>
@@ -29,6 +30,25 @@
     </div>
   </div>
 </nav>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">WARNING!</h2>
+      </div>
+      <h3 class="modal-body">
+        Are you sure you want to delete this photo?
+        <input type="text" ng-model="deletePhoto.id" ng-show="false">
+      </h3>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-danger" ng-click="delete(deletePhoto.id)">Yes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container-fluid">
   <!-- Display -->

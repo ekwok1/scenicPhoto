@@ -84,8 +84,8 @@ app.controller('PhotosController',
 ]);
 
 app.controller("PhotoController", 
-  ['$scope', 'currentUser', 'photo', 'userService', '$location', 'photoService',
-  function($scope, currentUser, photo, userService, $location, photoService){
+  ['$scope', 'currentUser', 'photo', 'userService', '$location', 'photoService', '$window',
+  function($scope, currentUser, photo, userService, $location, photoService, $window){
     
     $scope.view = {};
     $scope.view.showCommentPanel = true;
@@ -101,6 +101,9 @@ app.controller("PhotoController",
     $scope.editPhoto.title = photo.title;
     $scope.editPhoto.photoUrl = photo.photoUrl;
     $scope.editPhoto.description = photo.description;
+
+    $scope.deletePhoto = {};
+    $scope.deletePhoto.id = photo._id;
 
     if (!photo.message) {
       $scope.photo = photo;
@@ -132,6 +135,18 @@ app.controller("PhotoController",
         photoService.editPhoto(editPhoto).then(function(photo){
           $scope.view.showEditForm = false;
           $scope.view.showCommentPanel = true;
+        });
+      }
+    };
+
+    $scope.delete = function(photoId){
+      if (photoId !== photo._id) {
+        alert("Stop trying to delete other people's photos...");
+        userService.logout();
+      } else {
+        photoService.deletePhoto(photoId).then(function(photo){
+          $window.location.reload();
+          $location.path("/photos");
         });
       }
     };

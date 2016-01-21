@@ -50,6 +50,11 @@ app.service("photoService", ['$http', 'userService',
         return $http.put("/api/photos/"+photoId, editPhoto).then(function(photo){
           return photo.data;
         });
+      },
+      deletePhoto: function(photoId){
+        return $http.delete("/api/photos/"+photoId).then(function(photo){
+          return photo.data;
+        });
       }
     };
   }
