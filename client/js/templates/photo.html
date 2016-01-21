@@ -76,17 +76,17 @@
       <fieldset>
         <legend>Edit Photo</legend>
         <!-- error dismissable alert -->
-        <div class="alert alert-dismissble alert-warning">
-          <button type="button" class="close">X</button>
+        <div class="alert alert-dismissble alert-warning" ng-show="view.eErrors">
+          <button type="button" class="close" ng-click="resetAlert()">X</button>
           <div><strong>Warning!</strong> {{view.eErrors}}</div>
         </div>
-        <div class="form-group" ng-show="true">
+        <div class="form-group" ng-show="false">
           <label class="col-md-3 control-label">PhotoId</label>
           <div class="col-md-9">
             <input type="text" class="form-control" ng-model="editPhoto.id">
           </div>
         </div>
-        <div class="form-group" ng-show="true">
+        <div class="form-group" ng-show="false">
           <label class="col-md-3 control-label">Username</label>
           <div class="col-md-9">
             <input type="text" class="form-control" ng-model="editPhoto.username">

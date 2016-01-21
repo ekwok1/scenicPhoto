@@ -90,6 +90,7 @@ app.controller("PhotoController",
     $scope.view = {};
     $scope.view.showCommentPanel = true;
     $scope.view.showEditForm = false;
+    $scope.view.eErrors = null;
 
     $scope.currentUser = currentUser;
 
@@ -124,9 +125,19 @@ app.controller("PhotoController",
     $scope.edit = function(editPhoto){
       if (editPhoto.username !== photo.username || editPhoto.id !== photo._id) {
         $scope.view.eErrors = "You can't edit this photo";
+      } else if (editPhoto.title === "" || editPhoto.photoUrl === "" || editPhoto.description === "") {
+        $scope.view.eErrors = "Please fill in all fields.";
       } else {
-        photoService.editPhoto(editPhoto);
+        editPhoto.updated_at = Date.now();
+        photoService.editPhoto(editPhoto).then(function(photo){
+          $scope.view.showEditForm = false;
+          $scope.view.showCommentPanel = true;
+        });
       }
+    };
+
+    $scope.resetAlert = function(){
+      $scope.view.eErrors = null;
     };
   }
 ]);
