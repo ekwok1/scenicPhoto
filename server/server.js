@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/users", routes.users);
 app.use("/api/photos", routes.photos);
+app.use("/api/photos", routes.comments);
 
 // catch all
 app.get('*', function(req, res){
