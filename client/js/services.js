@@ -1,5 +1,5 @@
-app.service("userService", ['$http', '$window',
-  function($http, $window){
+app.service("userService", ['$http', '$window', '$location',
+  function($http, $window, $location){
     return {
       signup: function(newUser){
         return $http.post("/api/users/signup", newUser);
@@ -14,6 +14,7 @@ app.service("userService", ['$http', '$window',
       },
       logout: function(){
         $window.localStorage.clear();
+        $location.path("/home");
       },
       getCurrentUser: function(){
         return JSON.parse($window.localStorage.getItem("user"));
@@ -31,6 +32,11 @@ app.service("photoService", ['$http', 'userService',
       getPhotos: function(){
         return $http.get("/api/photos").then(function(photos){
           return photos.data;
+        });
+      },
+      getPhoto: function(id){
+        return $http.get("/api/photos/" + id).then(function(photo){
+          return photo.data;
         });
       },
       postPhoto: function(newPhoto){

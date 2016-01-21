@@ -58,7 +58,6 @@ app.controller('PhotosController',
 
     $scope.logout = function(){
       userService.logout();
-      $location.path("/home");
     };
 
     $scope.post = function(newPhoto){
@@ -84,9 +83,16 @@ app.controller('PhotosController',
   }
 ]);
 
-app.controller("PhotoController", ['$scope', 
-  function($scope){
-    $scope.test = "TEST";
+app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userService',
+  function($scope, currentUser, photo, userService){
+    
+    $scope.currentUser = currentUser;
+    $scope.photo = photo;
+
+    $scope.logout = function(){
+      userService.logout();
+    };
+    
   }
 ]);
 

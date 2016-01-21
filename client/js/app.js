@@ -22,7 +22,17 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         }
       })
       .when('/photos/:id', {
-        template: "<h1>Hi</h1>"
+        templateUrl: 'templates/photo.html',
+        controller: 'PhotoController',
+        restricted: true,
+        resolve: {
+          currentUser: ['userService', function(userService){
+            return userService.getCurrentUser();
+          }],
+          photo: ['photoService', '$route', function(photoService, $route){
+            return photoService.getPhoto($route.current.params.id);
+          }]
+        }
       })
       .otherwise({ redirectTo: '/home' });
 
