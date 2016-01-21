@@ -126,7 +126,7 @@ app.controller("PhotoController",
     };
 
     $scope.showButtons = function(){
-      return currentUser._id === photo.username;
+      return currentUser.username === photo.username;
     };
 
     $scope.edit = function(editPhoto){
