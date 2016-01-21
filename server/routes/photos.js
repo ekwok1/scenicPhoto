@@ -26,7 +26,7 @@ router.route("/:id")
       return res.status(200).json(photo);
     });
   })
-  .put(function(req, res){
+  .put(auth.checkToken, function(req, res){
     db.Photo.findByIdAndUpdate(req.params.id, req.body, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);

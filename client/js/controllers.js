@@ -125,9 +125,13 @@ app.controller("PhotoController",
       userService.logout();
     };
 
+    $scope.showButtons = function(){
+      return currentUser._id === photo.username;
+    };
+
     $scope.edit = function(editPhoto){
-      if (editPhoto.username !== photo.username || editPhoto.id !== photo._id) {
-        $scope.view.eErrors = "You can't edit this photo";
+      if (currentUser.username !== photo.username || editPhoto.id !== photo._id) {
+        $scope.view.eErrors = "You don't have permission to edit this photo";
       } else if (editPhoto.title === "" || editPhoto.photoUrl === "" || editPhoto.description === "") {
         $scope.view.eErrors = "Please fill in all fields.";
       } else {
@@ -140,8 +144,9 @@ app.controller("PhotoController",
     };
 
     $scope.delete = function(photoId){
-      if (photoId !== photo._id) {
+      if (photoId !== photo._id || photo.username !== currentUser.username) {
         alert("Stop trying to delete other people's photos...");
+        $window.location.reload();
         userService.logout();
       } else {
         photoService.deletePhoto(photoId).then(function(photo){
