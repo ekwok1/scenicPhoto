@@ -45,8 +45,33 @@
 }
 
 /*PHOTOFEED*/
-#panelDate{
-  margin-left: 120px;
+.photo {
+  width: 100%;
+}
+.photoTitle {
+  font-size: 120%;
+}
+.photoUsername {
+  font-size: 200%;
+}
+.photoDate {
+  font-size: 120%;
+}
+.hr {
+  color: #D6D6D6;
+  background-color: #D6D6D6;
+  height: 1.4px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+.photoLikes {
+  margin-right: 10px;
+}
+.photoCaption {
+  font-size: 130%;
+}
+.photoDescription {
+  font-size: 115%;
 }
 
 

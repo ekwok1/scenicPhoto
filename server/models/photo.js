@@ -3,7 +3,12 @@ var db = require("./index.js");
 
 var photoSchema = new mongoose.Schema({
   username: {
-    type: String
+    type: String,
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
   },
   photoUrl: {
     type: String,

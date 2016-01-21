@@ -52,6 +52,8 @@ app.controller('PhotosController',
 
     $scope.toggleForm = function(){
       $scope.view.showPhotoForm = !$scope.view.showPhotoForm;
+      $scope.newPhoto = {};
+      $scope.newPhoto.username = currentUser.username;
     };
 
     $scope.logout = function(){
