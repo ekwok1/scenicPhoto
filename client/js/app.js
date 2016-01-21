@@ -22,9 +22,7 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         }
       })
       .when('/photos/:id', {
-        templateUrl: 'templates/photo.html',
-        controller: 'PhotoController',
-        restricted: true
+        template: "<h1>Hi</h1>"
       })
       .otherwise({ redirectTo: '/home' });
 
