@@ -86,12 +86,26 @@ app.controller('PhotosController',
 app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userService', '$location',
   function($scope, currentUser, photo, userService, $location){
     
+    $scope.view = {};
+    $scope.view.showCommentPanel = true;
+    $scope.view.showEditForm = false;
+
     $scope.currentUser = currentUser;
 
     if (!photo.message) {
       $scope.photo = photo;
     } else {
       $location.path("/photos");
+    }
+
+    $scope.toggleForm = function(){
+      $scope.view.showCommentPanel = false;
+      $scope.view.showEditForm = true;
+    };
+
+    $scope.toggleComment = function(){
+      $scope.view.showCommentPanel = true;
+      $scope.view.showEditForm = false;
     }
 
     $scope.logout = function(){
