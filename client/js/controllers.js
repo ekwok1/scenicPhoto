@@ -62,15 +62,19 @@ app.controller('PhotosController',
     };
 
     $scope.post = function(newPhoto){
-      photoService.postPhoto(newPhoto).then(function(photo){
-        if (photo.message === "Photo validation failed") {
-          $scope.view.pErrors = "Photo Url and Description can't be blank.";
-        } else {
-          $scope.newPhoto = {};
-          $scope.photos.push(photo);
-          $scope.view.showPhotoForm = false;
-        }
-      });
+      if (newPhoto.username === currentUser.username) {
+        photoService.postPhoto(newPhoto).then(function(photo){
+          if (photo.message === "Photo validation failed") {
+            $scope.view.pErrors = "Title, Photo Url, Description can't be blank.";
+          } else {
+            $scope.newPhoto = {};
+            $scope.photos.push(photo);
+            $scope.view.showPhotoForm = false;
+          }
+        });
+      } else {
+        $scope.view.pErrors = "You cannot post as another user.";
+      }
     };
 
     $scope.resetAlert = function(){

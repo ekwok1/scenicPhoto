@@ -39,7 +39,7 @@
           <button type="button" class="close" ng-click="resetAlert()">X</button>
           <div><strong>Warning!</strong> {{view.pErrors}}</div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-show="false">
           <label class="col-md-2 control-label">Username</label>
           <div class="col-md-10">
             <input type="text" class="form-control" ng-model="newPhoto.username">
@@ -81,40 +81,93 @@
     <div class="row" ng-repeat="photo in photos">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <div class="photoTitle">{{photo.title}}</div>
+          <span class="photoTitle">{{photo.title}}</span>
         </div>
         <div class="panel-body">
-          <div class="col-sm-7">
-            <img ng-src="{{photo.photoUrl}}" class="photo">
+          <div class="row">
+            <div class="col-sm-7">
+              <img ng-src="{{photo.photoUrl}}" class="photo">
+            </div>
+            <div class="col-sm-5">
+              <div class="photoUsername">@{{photo.username}}</div>
+              <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
+              <div class="hr"></div>
+              <!-- HARD CODE FOR UI -->
+              <ul class="nav nav-pills">
+                <li class="photoLikes">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                  Likes <span class="badge">0</span>
+                </li>
+                <li>
+                  <span class="glyphicon glyphicon-heart"></span>
+                  Favorites
+                  <span class="badge">0</span>
+                </li>
+              </ul>
+              <div class="hr"></div>
+              <!-- END HARD CODE -->
+              <div class="photoCaption">Caption:</div>
+              <div class="photoDescription">{{photo.description}}</div>
+              <div class="hr"></div>
+              <!-- HARD CODE FOR UI -->
+              <div>
+                <button class="btn btn-success btn-sm btn-block">Like!</button>
+                <!-- <button class="btn btn-danger btn-sm btn-block">Unlike</button> -->
+                <button class="btn btn-info btn-sm btn-block">Favorite!</button>
+                <!-- <button class="btn btn-warning btn-sm btn-block">Unfavorite</button> -->
+              <!-- END HARD CODE -->
+              </div>
+            </div>
           </div>
-          <div class="col-sm-5">
-            <div class="photoUsername">@{{photo.username}}</div>
-            <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
-            <div class="hr"></div>
-            <!-- HARD CODE FOR UI -->
-            <ul class="nav nav-pills">
-              <li class="photoLikes">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-                Likes <span class="badge">0</span>
-              </li>
-              <li>
-                <span class="glyphicon glyphicon-heart"></span>
-                Favorites
-                <span class="badge">0</span>
-              </li>
-            </ul>
-            <div class="hr"></div>
-            <!-- END HARD CODE -->
-            <div class="photoCaption">Caption:</div>
-            <div class="photoDescription">{{photo.description}}</div>
-            <div class="hr"></div>
-            <!-- HARD CODE FOR UI -->
-            <div>
-              <button class="btn btn-success btn-sm btn-block">Like!</button>
-              <!-- <button class="btn btn-danger btn-sm btn-block">Unlike</button> -->
-              <button class="btn btn-info btn-sm btn-block">Favorite!</button>
-              <!-- <button class="btn btn-warning btn-sm btn-block">Unfavorite</button> -->
-            <!-- END HARD CODE -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div id="photoForm">
+                  <form class="form-horizontal" ng-show="view.showEditForm">
+                    <fieldset>
+                      <legend>Edit Photo</legend>
+                      <!-- error dismissable alert -->
+                      <div class="alert alert-dismissble alert-warning" ng-show="view.pErrors">
+                        <button type="button" class="close" ng-click="resetAlert()">X</button>
+                        <div><strong>Warning!</strong> {{view.pErrors}}</div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-md-2 control-label">Username</label>
+                        <div class="col-md-10">
+                          <input type="text" class="form-control" ng-model="photo.username">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-md-2 control-label">Title</label>
+                        <div class="col-md-10">
+                          <input type="text" class="form-control" ng-model="photo.title">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-md-2 control-label">Photo Url</label>
+                        <div class="col-md-10">
+                          <input type="text" class="form-control" ng-model="photo.photoUrl">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-md-2 control-label">Description</label>
+                        <div class="col-md-10">
+                          <textarea class="form-control" rows="2" ng-model="photo.description"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                          <button type="submit" class="btn btn-primary">Post</button>
+                        </div>
+                      </div>
+
+                    </fieldset>
+                  </form>
+                </div>
             </div>
           </div>
         </div>

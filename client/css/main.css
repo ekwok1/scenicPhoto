@@ -8,18 +8,15 @@
   margin-left: -30px;
   width: 100%;
 }
-
 #rightPanel {
   margin-left: -35px;
 }
-
 #homeTitle {
   font-family: "Dancing Script";
   font-size: 525%;
   text-align: center;
   margin-top: -26px;
 }
-
 #hr {
   color: black;
   background-color: black;
@@ -27,16 +24,13 @@
   margin-top: -5px;
   margin-bottom: 15px;
 }
-
 #sellingPoints {
   margin-bottom: 20px;
 }
-
 #homeWhatTitle {
   font-size: 190%;
   font-family: "Poiret One";
 }
-
 #homeWhat {
   margin-top: 10px;
   font-size: 140%;
