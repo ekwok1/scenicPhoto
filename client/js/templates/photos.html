@@ -35,9 +35,9 @@
       <fieldset>
         <legend>New Photo</legend>
         <!-- error dismissable alert -->
-        <div class="alert alert-dismissble alert-warning">
-          <button type="button" class="close">X</button>
-          <div><strong>Warning!</strong></div>
+        <div class="alert alert-dismissble alert-warning" ng-show="view.pErrors">
+          <button type="button" class="close" ng-click="resetAlert()">X</button>
+          <div><strong>Warning!</strong> {{view.pErrors}}</div>
         </div>
 
         <div class="form-group">

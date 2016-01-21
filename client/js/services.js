@@ -35,7 +35,9 @@ app.service("photoService", ['$http', 'userService',
       },
       postPhoto: function(newPhoto){
         var userId = userService.getCurrentUserId();
-        return $http.post("/api/users/"+userId+"/photos", newPhoto);
+        return $http.post("/api/users/"+userId+"/photos", newPhoto).then(function(photo){
+          return photo.data;
+        });
       }
     };
   }

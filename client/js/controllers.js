@@ -45,6 +45,7 @@ app.controller('PhotosController',
 
     $scope.view = {};
     $scope.view.showPhotoForm = false;
+    $scope.view.pErrors = null;
     
     $scope.currentUser = currentUser;
     $scope.photos = photos;
@@ -60,10 +61,18 @@ app.controller('PhotosController',
 
     $scope.post = function(newPhoto){
       photoService.postPhoto(newPhoto).then(function(photo){
-        $scope.newPhoto = {};
-        $scope.photos.push(photo);
-        $scope.view.showPhotoForm = false;
+        if (photo.message === "Photo validation failed") {
+          $scope.view.pErrors = "Photo Url and Description can't be blank.";
+        } else {
+          $scope.newPhoto = {};
+          $scope.photos.push(photo);
+          $scope.view.showPhotoForm = false;
+        }
       });
+    };
+
+    $scope.resetAlert = function(){
+      $scope.view.pErrors = null;
     };
 
   }
