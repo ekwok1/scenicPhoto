@@ -10,6 +10,12 @@ var photoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  created_at: {
+    type: Date,
+  },
+  updated_at: {
+    type: Date,
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
@@ -17,6 +23,16 @@ var photoSchema = new mongoose.Schema({
 });
 
 var Photo = mongoose.model("Photo", photoSchema);
+
+photoSchema.pre('save', function(next){
+  var photo = this;
+  var now = Date.now();
+  photo.updated_at = now;
+  if (!photo.created_at){
+    photo.created_at = now;
+  }
+  next();
+});
 
 photoSchema.pre('remove', function(next){
   var photo = this;

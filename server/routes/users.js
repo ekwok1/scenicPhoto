@@ -34,10 +34,10 @@ router.post("/:id/photos", function(req, res){
     if (!user) return res.status(401).send(err);
     db.Photo.create(req.body, function(err, photo){
       if (err) return res.status(500).send(err);
-      user.photos.push(photo);
       photo.user = user;
-      user.save();
+      user.photos.push(photo);
       photo.save();
+      user.save();
       return res.status(200).json(photo);
     });
   });

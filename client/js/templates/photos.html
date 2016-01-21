@@ -62,4 +62,6 @@
   </div>
 </div>
 
-{{photos}}
+<div ng-repeat="photo in photos | orderBy: '-updated_at' ">
+  <div>{{photo.description}}</div>
+</div>
