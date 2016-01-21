@@ -45,6 +45,13 @@
 .photoTitle {
   font-size: 120%;
 }
+.photoTitleLink {
+  color: white;
+}
+.photoTitleLink:hover {
+  text-decoration: none;
+  color: white;
+}
 .photoUsername {
   font-size: 200%;
 }

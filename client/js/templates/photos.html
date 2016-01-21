@@ -80,12 +80,14 @@
     <!-- panel for photofeed -->
     <div class="panel panel-primary" ng-repeat="photo in photos">
       <div class="panel-heading">
-        <span class="photoTitle">{{photo.title}}</span>
+        <a ng-href="/photos/{{photo._id}}" class="photoTitleLink"><span class="photoTitle">{{photo.title}}</span></a>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-7">
-            <img ng-src="{{photo.photoUrl}}" class="photo">
+            <a ng-href="/photos/{{photo._id}}" class="photoTitleLink">
+              <img ng-src="{{photo.photoUrl}}" class="photo">
+            </a>
           </div>
           <div class="col-sm-5">
             <div class="photoUsername">@{{photo.username}}</div>

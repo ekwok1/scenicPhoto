@@ -84,7 +84,11 @@ app.controller('PhotosController',
   }
 ]);
 
-
+app.controller("PhotoController", ['$scope', 
+  function($scope){
+    $scope.test = "TEST";
+  }
+]);
 
 
 

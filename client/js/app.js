@@ -21,6 +21,11 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
           }]
         }
       })
+      .when('/photos/:id', {
+        templateUrl: 'templates/photo.html',
+        controller: 'PhotoController',
+        restricted: true
+      })
       .otherwise({ redirectTo: '/home' });
 
     $locationProvider.html5Mode(true);
