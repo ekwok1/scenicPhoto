@@ -96,7 +96,7 @@ app.controller("PhotoController",
 
     $scope.editPhoto = {};
     $scope.editPhoto.id = photo._id;
-    $scope.editPhoto.username = currentUser.username;
+    $scope.editPhoto.username = photo.username;
     $scope.editPhoto.updated_at = photo.updated_at;
     $scope.editPhoto.title = photo.title;
     $scope.editPhoto.photoUrl = photo.photoUrl;
@@ -131,7 +131,9 @@ app.controller("PhotoController",
 
     $scope.edit = function(editPhoto){
       if (currentUser.username !== photo.username || editPhoto.id !== photo._id) {
-        $scope.view.eErrors = "You don't have permission to edit this photo";
+        alert("Stop trying to edit other people's photos...");
+        $window.location.reload();
+        userService.logout();
       } else if (editPhoto.title === "" || editPhoto.photoUrl === "" || editPhoto.description === "") {
         $scope.view.eErrors = "Please fill in all fields.";
       } else {

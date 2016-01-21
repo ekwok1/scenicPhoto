@@ -12,9 +12,9 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li ng-click="toggleForm()"><a>Edit Photo</a></li>
-        <li data-toggle="modal" data-target="#deleteModal"><a>Delete Photo</a></li>
         <li ng-hide="view.showCommentPanel" ng-click="toggleComment()"><a>See Comments</a></li>
+        <li ng-click="toggleForm()" ng-show="view.showCommentPanel"><a>Edit Photo</a></li>
+        <li data-toggle="modal" data-target="#deleteModal"><a>Delete Photo</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button">Resources <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
