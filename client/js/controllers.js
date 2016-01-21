@@ -92,6 +92,12 @@ app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userServic
 
     $scope.currentUser = currentUser;
 
+    $scope.editPhoto = {};
+    $scope.editPhoto.username = currentUser.username;
+    $scope.editPhoto.title = photo.title;
+    $scope.editPhoto.photoUrl = photo.photoUrl;
+    $scope.editPhoto.description = photo.description;
+
     if (!photo.message) {
       $scope.photo = photo;
     } else {
@@ -106,12 +112,19 @@ app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userServic
     $scope.toggleComment = function(){
       $scope.view.showCommentPanel = true;
       $scope.view.showEditForm = false;
-    }
+    };
 
     $scope.logout = function(){
       userService.logout();
     };
 
+    $scope.edit = function(editPhoto){
+      if (editPhoto.username !== photo.username) {
+        $scope.view.eErrors = "You can't edit this photo";
+      } else {
+        
+      }
+    };
   }
 ]);
 

@@ -72,36 +72,36 @@
   <div class="col-sm-4">
 
     <!-- Edit Form -->
-    <form class="form-horizontal" ng-show="view.showEditForm">
+    <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editPhoto)">
       <fieldset>
         <legend>Edit Photo</legend>
         <!-- error dismissable alert -->
         <div class="alert alert-dismissble alert-warning">
           <button type="button" class="close">X</button>
-          <div><strong>Warning!</strong> {{view.pErrors}}</div>
+          <div><strong>Warning!</strong> {{view.eErrors}}</div>
         </div>
         <div class="form-group" ng-show="false">
           <label class="col-md-3 control-label">Username</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="photo.username">
+            <input type="text" class="form-control" ng-model="editPhoto.username">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Title</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="photo.title">
+            <input type="text" class="form-control" ng-model="editPhoto.title">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Photo Url</label>
           <div class="col-md-9">
-            <input type="text" class="form-control" ng-model="photo.photoUrl">
+            <input type="text" class="form-control" ng-model="editPhoto.photoUrl">
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-3 control-label">Description</label>
           <div class="col-md-9">
-            <textarea class="form-control" rows="2" ng-model="photo.description"></textarea>
+            <textarea class="form-control" rows="2" ng-model="editPhoto.description"></textarea>
           </div>
         </div>
         <div class="form-group">
