@@ -13,7 +13,7 @@ router.use(auth.checkHeaders);
 
 router.route('/:id/comments')
   .get(function(req, res){
-    db.Comment.find({'photo': req.params.id}).then(function(err, comments){
+    db.Comment.find({}, function(err, comments){
       if (err) return res.status(500).send(err);
       if (!comments) return res.status(401).send(err);
       return res.json(comments);
