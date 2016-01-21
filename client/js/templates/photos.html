@@ -39,7 +39,12 @@
           <button type="button" class="close" ng-click="resetAlert()">X</button>
           <div><strong>Warning!</strong> {{view.pErrors}}</div>
         </div>
-
+        <div class="form-group">
+          <label class="col-md-2 control-label">Username</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" ng-model="newPhoto.username" ng-init="newPhoto.username=currentUser.username">
+          </div>
+        </div>
         <div class="form-group">
           <label class="col-md-2 control-label">Photo Url</label>
           <div class="col-md-10">
@@ -62,6 +67,31 @@
   </div>
 </div>
 
-<div ng-repeat="photo in photos | orderBy: '-updated_at' ">
-  <div>{{photo.description}}</div>
+{{photos}}
+
+<br>
+<div class="container-fluid">
+  <div class="col-sm-4" ng-repeat="photo in photos">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">@{{photo.username}}</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
