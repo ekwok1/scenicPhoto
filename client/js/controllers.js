@@ -83,16 +83,21 @@ app.controller('PhotosController',
   }
 ]);
 
-app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userService',
-  function($scope, currentUser, photo, userService){
+app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userService', '$location',
+  function($scope, currentUser, photo, userService, $location){
     
     $scope.currentUser = currentUser;
-    $scope.photo = photo;
+
+    if (!photo.message) {
+      $scope.photo = photo;
+    } else {
+      $location.path("/photos");
+    }
 
     $scope.logout = function(){
       userService.logout();
     };
-    
+
   }
 ]);
 
