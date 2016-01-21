@@ -83,8 +83,9 @@ app.controller('PhotosController',
   }
 ]);
 
-app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userService', '$location',
-  function($scope, currentUser, photo, userService, $location){
+app.controller("PhotoController", 
+  ['$scope', 'currentUser', 'photo', 'userService', '$location', 'photoService',
+  function($scope, currentUser, photo, userService, $location, photoService){
     
     $scope.view = {};
     $scope.view.showCommentPanel = true;
@@ -93,7 +94,9 @@ app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userServic
     $scope.currentUser = currentUser;
 
     $scope.editPhoto = {};
+    $scope.editPhoto.id = photo._id;
     $scope.editPhoto.username = currentUser.username;
+    $scope.editPhoto.updated_at = photo.updated_at;
     $scope.editPhoto.title = photo.title;
     $scope.editPhoto.photoUrl = photo.photoUrl;
     $scope.editPhoto.description = photo.description;
@@ -119,10 +122,10 @@ app.controller("PhotoController", ['$scope', 'currentUser', 'photo', 'userServic
     };
 
     $scope.edit = function(editPhoto){
-      if (editPhoto.username !== photo.username) {
+      if (editPhoto.username !== photo.username || editPhoto.id !== photo._id) {
         $scope.view.eErrors = "You can't edit this photo";
       } else {
-        
+        photoService.editPhoto(editPhoto);
       }
     };
   }

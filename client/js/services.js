@@ -44,6 +44,12 @@ app.service("photoService", ['$http', 'userService',
         return $http.post("/api/users/"+userId+"/photos", newPhoto).then(function(photo){
           return photo.data;
         });
+      },
+      editPhoto: function(editPhoto){
+        var photoId = editPhoto.id;
+        return $http.put("/api/photos/"+photoId, editPhoto).then(function(photo){
+          return photo.data;
+        });
       }
     };
   }
