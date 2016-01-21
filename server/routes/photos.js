@@ -12,7 +12,7 @@ router.use(auth.checkHeaders);
 // DELETE one photo (/api/photos/:id)
 
 router.route("/")
-  .get(auth.checkToken, function(req, res){
+  .get(function(req, res){
     db.Photo.find({}, function(err, photo){
       if (err) return res.status(500).send(err);
       return res.status(200).json(photo);
@@ -20,21 +20,21 @@ router.route("/")
   });
 
 router.route("/:id")
-  .get(auth.checkToken, function(req, res){
+  .get(function(req, res){
     db.Photo.findById(req.params.id, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);
       return res.status(200).json(photo);
     });
   })
-  .put(auth.checkToken, function(req, res){
+  .put(function(req, res){
     db.Photo.findByIdAndUpdate(req.params.id, req.body, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);
       return res.status(200).json(photo);
     });
   })
-  .delete(auth.checkToken, function(req, res){
+  .delete(function(req, res){
     db.Photo.findById(req.params.id, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);

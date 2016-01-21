@@ -28,7 +28,7 @@ router.post("/login", function(req, res){
 });
 
 // API route for new photo
-router.post("/:id/photos", auth.checkToken, function(req, res){
+router.post("/:id/photos", function(req, res){
   db.User.findById(req.params.id, function(err, user){
     if (err) return res.status(500).send(err);
     if (!user) return res.status(401).send(err);
