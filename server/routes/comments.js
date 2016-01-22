@@ -10,6 +10,16 @@ router.use(auth.checkHeaders);
 // POST comment for specific photo...(/api/photos/:id/comments)
 // DELETE comment...(/api/photos/:pId/comments/:cId)
 
+// Dev Route
+// router.get('/', function(req, res){
+//   db.Comment.find({}, function(err, comments){
+//     if (err) return res.status(500).send(err);
+//     if (!comments) return res.status(401).send(err);
+//     return res.json(comments);
+//   });
+// });
+//
+
 router.route('/:id/comments')
   .get(function(req, res){
     db.Comment.find({'photo': req.params.id}, function(err, comments){

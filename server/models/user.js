@@ -9,9 +9,12 @@ var userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  password:{
-    type:String,
+  password: {
+    type: String,
     required: true
+  },
+  profilePicture: {
+    type: String,
   },
   likedPhotos: [{
     type: mongoose.Schema.Types.ObjectId,
