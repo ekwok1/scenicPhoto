@@ -8,10 +8,10 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user',
     // SPA booleans
     $scope.view = {};
     if (currentUser.username === user.username) {
-      $scope.view.showEditProfile = true;
+      $scope.view.showProfile = true;
       $scope.view.showFollow = false;
     } else {
-      $scope.view.showEditProfile = false;
+      $scope.view.showProfile = false;
       $scope.view.showFollow = true;
     }
 

@@ -29,7 +29,7 @@
 </nav>
 
 <div class="container-fluid">
-  <div class="col-sm-4">
+  <div class="col-sm-5">
     <!-- left panel -->
     <div class="leftPanel">
       <!-- username and photo -->
@@ -71,13 +71,40 @@
       <!-- follow button -->
       <table class="table button">
         <thead>
-          <th ng-show="view.showEditProfile"><button class="btn btn-default btn-block">Update Profile</button></th>
+          <th ng-show="view.showProfile"><button class="btn btn-default btn-block">Update Profile</button></th>
+          <th ng-show="view.showProfile"><button class="btn btn-default btn-block">See Personal Information</button></th>
           <th ng-show="view.showFollow"><button class="btn btn-default btn-block">Follow</button></th>
         </thead>
       </table>
-
     </div>
   </div>
+  <div class="col-sm-7">
+    <!-- update personal information form -->
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Update Profile</legend>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Profile Picture</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <!-- see personal information -->
+    <!-- see my photos -->
+    <!-- see my followers -->
+    <!-- see my following -->
+    <!-- see my favorites -->
+  </div>
+
+
+
 </div>
 
 

@@ -105,6 +105,9 @@ body {
   text-align: center;
   font-size: 125%;
 }
+.tableValue:hover {
+  background-color: dimgrey;
+}
 
 
 
