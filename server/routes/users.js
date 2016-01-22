@@ -37,7 +37,7 @@ router.route("/:id")
     });
   })
   .put(function(req, res){
-    db.User.findById(req.params.id, req.body, function(err, user){
+    db.User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
       if (err) return res.status(500).send(err);
       if (!user) return res.status(401).send(err);
       return res.status(200).json(user);

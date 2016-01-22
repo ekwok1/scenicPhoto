@@ -14,12 +14,14 @@ app.controller('PhotosController',
 
     // STAT functions
     $scope.like = function(id, photo){
-      photo.numLikes++;
-      photoService.addStat(id, photo)
-      .then(function(){
-        user.likedPhotos.push(photo._id);
-        userService.updateUser(user._id, user);
-      });
+      if (user.likedPhotos.indexOf(id) === -1) {
+        photo.numLikes++;
+        photoService.addStat(id, photo)
+        .then(function(){
+          user.likedPhotos.push(photo._id);
+          userService.updateUser(user._id, user);
+        });
+      }
     };
     
     // navbar and ux functions
