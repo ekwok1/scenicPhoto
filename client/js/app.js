@@ -11,7 +11,16 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
       .when('/users/:id', {
         templateUrl: 'templates/profile.html',
         controller: 'ProfileController',
-        restricted: true
+        restricted: true,
+        resolve: {
+          currentUser: ['userService', function(userService){
+            return userService.getCurrentUser();
+          }],
+          user: ['userService', function(userService){
+            var userId = userService.getCurrentUserId();
+            return userService.getSingleUser(userId);
+          }]
+        }
       })
       .when('/photos', {
         templateUrl: 'templates/photos.html',
