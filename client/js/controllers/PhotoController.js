@@ -10,6 +10,10 @@ app.controller('PhotosController',
     $scope.view = {};
     $scope.view.showPhotoForm = false;
     $scope.view.pErrors = false;
+
+    // STAT counters
+    $scope.stats = {};
+    $scope.stats.comments = photos.numComments;
     
     // functions
     $scope.toggleForm = function(){
