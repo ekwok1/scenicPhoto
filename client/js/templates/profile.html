@@ -12,7 +12,6 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a>Edit Profile</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button">Resources <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -29,59 +28,57 @@
   </div>
 </nav>
 
-<div class="profileLeft">
-  <!-- username -->
-  <table class="table profilePicture">
-    <tbody>
-      <td class="profileUsername">{{currentUser.username}}</td>
-    </tbody>
-  </table>
-
-  <!-- profile picture -->
-  <table class="table profilePicture">
-    <thead>
-      <th>
+<div class="container-fluid">
+  <div class="col-sm-4">
+    <!-- left panel -->
+    <div class="leftPanel">
+      <!-- username and photo -->
+      <div class="text-center">
+        <div class="profileUsername">{{currentUser.username}}</div>
         <img src="../../images/defaultProfile.jpg" class="circle">
-      </th>
-    </thead>
-  </table>
-  
-  <!-- photos -->
-  <table class="table">
-    <thead>
-      <th class="tableValue">{{user.photos.length}} photos</th>
-    </thead>
-  </table>
+      </div>
+      <div>
+        
+      </div>
+      <!-- photos -->
+      <table class="table">
+        <thead>
+          <th class="tableValue">{{user.photos.length}} photos</th>
+        </thead>
+      </table>
 
-  <!-- followers -->
-  <table class="table">
-    <thead>
-      <th class="tableValue">0 followers</th>
-    </thead>
-  </table>
+      <!-- followers -->
+      <table class="table">
+        <thead>
+          <th class="tableValue">0 followers</th>
+        </thead>
+      </table>
 
-  <!-- following -->
-  <table class="table">
-    <thead>
-      <th class="tableValue">0 following</th>
-    </thead>
-  </table>
+      <!-- following -->
+      <table class="table">
+        <thead>
+          <th class="tableValue">0 following</th>
+        </thead>
+      </table>
 
-  <!-- favorited -->
-  <table class="table">
-    <thead>
-      <th class="tableValue">{{user.favoritePhotos.length}} favorited</th>
-    </thead>
-  </table>
+      <!-- favorited -->
+      <table class="table">
+        <thead>
+          <th class="tableValue">{{user.favoritePhotos.length}} favorited</th>
+        </thead>
+      </table>
+      
+      <!-- follow button -->
+      <table class="table button">
+        <thead>
+          <th ng-show="view.showEditProfile"><button class="btn btn-default btn-block">Update Profile</button></th>
+          <th ng-show="view.showFollow"><button class="btn btn-default btn-block">Follow</button></th>
+        </thead>
+      </table>
 
-  <!-- follow button -->
-  <table class="table">
-    <thead>
-      <th><button class="btn btn-primary btn-block">Follow</button></th>
-    </thead>
-  </table>
+    </div>
+  </div>
 </div>
-
 
 
 

@@ -84,30 +84,22 @@
 }
 
 /*PROFILE*/
-.profileLeft {
-/*  background-color: lightgrey;*/
-  border-right: solid lightgrey 1.5px;
-  width: 35%;
-  height: 630px;
-  margin-top: -22px;
+body {
+  background-color: lightgrey;
 }
-.tableValue:hover {
+.leftPanel {
   background-color: dodgerblue;
-}
-.profilePicture {
-  background-color: dodgerblue;
-}
-.circle {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  margin-left: 26%;
-  margin-top: -5%;
 }
 .profileUsername {
-  text-align: center;
   font-size: 215%;
-  color: white;
+  color: black;
+}
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 .tableValue {
   text-align: center;
