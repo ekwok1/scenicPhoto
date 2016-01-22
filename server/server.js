@@ -25,6 +25,4 @@ app.get('*', function(req, res){
 });
 
 // serving localhost
-app.listen(process.env.PORT || 3000, function(){
-  console.log("localhost3000 ready");
-});
+app.listen(process.env.PORT || 3000);
