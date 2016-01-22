@@ -8,6 +8,11 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         controller: 'SLController',
         preventWhenLoggedIn: true
       })
+      .when('/users/:id', {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileController',
+        restricted: true
+      })
       .when('/photos', {
         templateUrl: 'templates/photos.html',
         controller: 'PhotosController',
