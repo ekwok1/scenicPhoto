@@ -3,15 +3,27 @@ var db = require("./index.js");
 
 var commentSchema = new mongoose.Schema({
   username: {
-    type: String
+    type: String,
+    required: true
   },
   comment: {
     type: String,
+    required: true
+  },
+  created_at: {
+    type: Date
   },
   photo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
   }
+});
+
+commentSchema.pre('save', function(next){
+  var comment = this;
+  var now = Date.now();
+  comment.created_at = now;
+  next();
 });
 
 commentSchema.pre('remove', function(next){
