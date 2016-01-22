@@ -35,6 +35,29 @@ app.controller('PhotosController',
         });
       }
     };
+
+    $scope.favorite = function(id, photo){
+      if (user.favoritePhotos.indexOf(id) === -1){
+        photo.numFavorites++;
+        photoService.addStat(id, photo)
+        .then(function(){
+          user.favoritePhotos.push(photo._id);
+          userService.updateUser(user._id, user);
+        });
+      }
+    };
+
+    $scope.unfavorite = function(id, photo){
+      var index = user.favoritePhotos.indexOf(id);
+      if (index !== -1) {
+        photo.numFavorites--;
+        photoService.addStat(id, photo)
+        .then(function(){
+          user.favoritePhotos.splice(index, 1);
+          userService.updateUser(user._id, user);
+        });
+      }
+    };
     
     // navbar and ux functions
     $scope.toggleForm = function(){
@@ -114,6 +137,7 @@ app.controller("PhotoController",
     // stat counters
     $scope.numComments = comments.length;
     $scope.numLikes = photo.numLikes;
+    $scope.numFavs = photo.numFavorites;
 
     // navbar and UX methods
     $scope.showButtons = function(){
