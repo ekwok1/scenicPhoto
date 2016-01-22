@@ -96,45 +96,44 @@
       </fieldset>
     </form>
     <!-- see my photos -->
-    {{user.photos}}
-<!--     <div class="panel panel-primary">
+    <div class="panel panel-primary" ng-repeat="photo in photos">
       <div class="panel-heading">
-        <span class="photoTitle">{{editPhoto.title}}</span>
+        <span class="photoTitle">{{photo.title}}</span>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-7">
-            <img ng-src="{{editPhoto.photoUrl}}" class="photo">
+            <img ng-src="{{photo.photoUrl}}" class="photo">
           </div>
           <div class="col-sm-5">
-            <div class="photoUsername"><em>@{{editPhoto.username}}</em></div>
-            <div class="photoDate">{{editPhoto.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
+            <div class="photoUsername"><em>@{{photo.username}}</em></div>
+            <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
 
             <ul class="nav nav-pills">
               <li class="photoStats">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                Likes <span class="badge">{{numLikes}}</span>
+                Likes <span class="badge">{{photo.numLikes}}</span>
               </li>
               <li class="photoStats">
                 <span class="glyphicon glyphicon-heart"></span>
                 Favorites
-                <span class="badge">{{numFavs}}</span>
+                <span class="badge">{{photo.numFavorites}}</span>
               </li>
               <li>
                 <span class="glyphicon glyphicon-comment"></span>
                 Comments
-                <span class="badge">{{numComments}}</span>
+                <span class="badge">{{photo.numComments}}</span>
               </li>
             </ul>
             <div class="hr"></div>
 
             <div class="photoCaption">Caption:</div>
-            <div class="photoDescription">{{editPhoto.description}}</div>
+            <div class="photoDescription">{{photo.description}}</div>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- see my followers -->
     <!-- see my following -->
     <!-- see my favorites -->

@@ -5,6 +5,11 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     $scope.currentUser = currentUser;
     $scope.user = user;
 
+    // navbar
+    $scope.logout = function(){
+      userService.logout();
+    };
+
     // SPA booleans
     $scope.view = {};
 
@@ -23,11 +28,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showEditForm = !$scope.view.showEditForm;
     };
 
-    // navbar
-    $scope.logout = function(){
-      userService.logout();
-    };
-
     // edit form
     $scope.editProfile = {};
     $scope.editProfile.profile = user.profile;
@@ -42,6 +42,9 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
         userService.updateUser(user._id, editProf);
       }
     };
+
+    // showing photos
+    $scope.photos = user.photos;
   }
 ]);
 
