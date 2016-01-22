@@ -18,6 +18,10 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
           }],
           photos: ['photoService', function(photoService){
             return photoService.getPhotos();
+          }],
+          user: ['userService', function(userService){
+            var userId = userService.getCurrentUserId();
+            return userService.getSingleUser(userId);
           }]
         }
       })

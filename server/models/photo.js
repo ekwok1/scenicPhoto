@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var db = require("./index.js");
+var bcrypt = require("bcrypt");
 
 var photoSchema = new mongoose.Schema({
   username: {
@@ -49,6 +50,7 @@ var photoSchema = new mongoose.Schema({
 var Photo = mongoose.model("Photo", photoSchema);
 
 photoSchema.pre('save', function(next){
+  // timestamps
   var photo = this;
   var now = Date.now();
   photo.updated_at = now;
@@ -81,9 +83,6 @@ photoSchema.pre('remove', function(next){
 });
 
 module.exports = Photo;
-
-
-
 
 
 

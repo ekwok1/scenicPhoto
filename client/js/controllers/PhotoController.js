@@ -1,10 +1,11 @@
 app.controller('PhotosController', 
-  ['$scope', '$location', 'userService', 'currentUser', 'photos', 'photoService',
-  function($scope, $location, userService, currentUser, photos, photoService){
+  ['$scope', '$location', 'userService', 'currentUser', 'photos', 'photoService', 'user',
+  function($scope, $location, userService, currentUser, photos, photoService, user){
     
     // from resolves
     $scope.currentUser = currentUser;
     $scope.photos = photos;
+    $scope.user = user;
 
     // SPA booleans
     $scope.view = {};
@@ -14,8 +15,10 @@ app.controller('PhotosController',
     // STAT functions
     $scope.like = function(id, photo){
       photo.numLikes++;
-      photoService.addStat(id, photo).then(function(photo){
-        alert("hi");
+      photoService.addStat(id, photo)
+      .then(function(){
+        user.likedPhotos.push(photo._id);
+        userService.updateUser(user._id, user);
       });
     };
     
