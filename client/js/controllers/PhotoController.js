@@ -109,7 +109,7 @@ app.controller("PhotoController",
       userService.logout();
     };
 
-    // POST for comments
+    // POST and DELETE for comments
     $scope.post = function(comment){
       if (comment.username !== currentUser.username){
         $scope.view.cErrors = "You cannot post comments as a different user.";
@@ -122,6 +122,11 @@ app.controller("PhotoController",
           $scope.comment.username = currentUser.username;
         });
       }
+    };
+
+    $scope.canDelete = function(user){
+      if (currentUser.username === photo.username) return true;
+      return currentUser.username === user;
     };
 
     // PUT and DELETE for photo
@@ -154,7 +159,6 @@ app.controller("PhotoController",
     };
   }
 ]);
-
 
 
 

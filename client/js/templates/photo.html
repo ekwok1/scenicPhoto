@@ -154,8 +154,9 @@
         <table class="table table-striped table-bordered">
           <tbody>
 
-            <tr ng-repeat="comment in comments | orderBy: '-created_at'">
+            <tr ng-repeat="comment in comments | orderBy: '-created_at' track by $index">
               <td><strong>{{comment.username}}</strong>: {{comment.comment}}</td>
+              <td ng-show="canDelete(comment.username)">X</td>
             </tr>
             
           </tbody>
@@ -180,6 +181,9 @@
     </div>
   </div>
 </div>
+
+
+
 
 
 
