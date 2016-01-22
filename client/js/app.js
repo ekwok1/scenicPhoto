@@ -31,6 +31,9 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
           }],
           photo: ['photoService', '$route', function(photoService, $route){
             return photoService.getPhoto($route.current.params.id);
+          }],
+          comments: ['commentService', '$route', function(commentService, $route){
+            return commentService.getComments($route.current.params.id);
           }]
         }
       })
