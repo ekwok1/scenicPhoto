@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 var db = require("./index.js");
-var bcrypt = require("bcrypt");
 
 var photoSchema = new mongoose.Schema({
   username: {
