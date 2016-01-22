@@ -55,8 +55,24 @@ photoSchema.pre('remove', function(next){
     var index = user.photos.indexOf(photoId);
     user.photos.splice(index, 1);
     user.save();
-    next();
   });
+
+  var comments = photo.comments;
+  comments.forEach(function(commentId){
+    db.Comment.findOne({ '_id': commentId }, function(err, comment){
+      comment.remove();
+    });
+  });
+
+  next();
+
 });
 
 module.exports = Photo;
+
+
+
+
+
+
+

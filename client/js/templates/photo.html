@@ -64,18 +64,23 @@
             <img ng-src="{{editPhoto.photoUrl}}" class="photo">
           </div>
           <div class="col-sm-5">
-            <div class="photoUsername">@{{editPhoto.username}}</div>
+            <div class="photoUsername"><em>@{{editPhoto.username}}</em></div>
             <div class="photoDate">{{editPhoto.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
             <!-- HARD CODE FOR UI -->
             <ul class="nav nav-pills">
-              <li class="photoLikes">
+              <li class="photoStats">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 Likes <span class="badge">0</span>
               </li>
-              <li>
+              <li class="photoStats">
                 <span class="glyphicon glyphicon-heart"></span>
                 Favorites
+                <span class="badge">0</span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-comment"></span>
+                Comments
                 <span class="badge">0</span>
               </li>
             </ul>
@@ -144,35 +149,52 @@
         <h3 class="panel-title">Comments</h3>
       </div>
       <div class="panel-body">
-        <!-- HARD CODE -->
+        <!-- error dismissable alert -->
+        <div class="alert alert-dismissble alert-warning" ng-show="view.cErrors">
+          <button type="button" class="close" ng-click="resetAlert()">X</button>
+          <div><strong>Warning!</strong> {{view.cErrors}}</div>
+        </div>
+
+        <!-- ng-repeat for comments -->
         <table class="table table-striped table-bordered">
           <tbody>
-            <tr ng-repeat="comment in comments">
-              <td>{{comment.username}}: {{comment.comment}}</td>
+
+            <tr ng-repeat="comment in comments | orderBy: '-created_at' track by $index">
+              <td class="col-sm-11">
+                <div><strong>{{comment.username}}</strong>: {{comment.comment}}</div>
+                <div class="commentDate"><em>{{comment.created_at | date:'mediumDate'}}</em></div>
+              </td>
+              <td class="col-sm-1" ng-show="canDelete(comment.username)" ng-click="deleteComment($index)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </td>
             </tr>
-            <tr>
-              <td><strong>ekwok1:</strong> Yea!</td>
-            </tr>            
-            <tr>
-              <td><strong>ekwok1:</strong> It was really nice. What if I go off to the next line on the comment?</td>
-            </tr>
+            
           </tbody>
         </table>
-        <form action="#">
+
+        <!-- form for submitting comments -->
+        <form ng-submit="post(comment)">
+          <div class="row" ng-show="false">
+            <input type="text" ng-model="comment.username">
+            <input type="text" ng-model="comment.id">
+          </div>
           <div class="row">
             <div class="col-sm-9">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" ng-model="comment.comment">
             </div>
             <div class="col-sm-3">
               <button class="btn btn-primary">Post</button>
             </div>
           </div>
         </form>
-        <!-- END HARD CODE -->
+
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 
 
