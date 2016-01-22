@@ -38,6 +38,14 @@ router.route("/:id")
     db.Photo.findById(req.params.id, function(err, photo){
       if (err) return res.status(500).send(err);
       if (!photo) return res.status(401).send(err);
+      db.User.find({'likedPhotos': {$in: [req.params.id]}}, function(err, users){
+        if (err) return res.status(500).send(err);
+        users.forEach(function(user){
+          var index = user.likedPhotos.indexOf(req.params.id);
+          user.likedPhotos.splice(index, 1);
+          user.save();
+        });
+      });
       photo.remove();
       return res.status(200).json(photo);
     });

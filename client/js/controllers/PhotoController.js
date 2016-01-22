@@ -1,7 +1,7 @@
 app.controller('PhotosController', 
   ['$scope', '$location', 'userService', 'currentUser', 'photos', 'photoService', 'user',
   function($scope, $location, userService, currentUser, photos, photoService, user){
-    
+
     // from resolves
     $scope.currentUser = currentUser;
     $scope.photos = photos;
