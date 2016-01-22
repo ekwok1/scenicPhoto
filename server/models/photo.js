@@ -61,27 +61,25 @@ photoSchema.pre('save', function(next){
 });
 
 photoSchema.pre('remove', function(next){
-  // variables
   var photo = this;
   var photoId = photo._id;
   var userId = photo.user;
-  var comments = photo.comments;
-
-  // removing from user as well
   db.User.findOne({ '_id': userId }, function(err, user){
     if (!user) return next();
     var index = user.photos.indexOf(photoId);
     user.photos.splice(index, 1);
     user.save();
   });
-  // removing all comments
+
+  var comments = photo.comments;
   comments.forEach(function(commentId){
     db.Comment.findOne({ '_id': commentId }, function(err, comment){
       comment.remove();
     });
   });
-  
+
   next();
+
 });
 
 module.exports = Photo;

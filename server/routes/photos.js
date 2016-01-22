@@ -45,9 +45,17 @@ router.route("/:id")
           user.likedPhotos.splice(index, 1);
           user.save();
         });
+        db.User.find({'favoritePhotos': {$in: [req.params.id]}}, function(err, users){
+          if (err) return res.status(500).send(err);
+          users.forEach(function(user){
+            var index = user.favoritePhotos.indexOf(req.params.id);
+            user.favoritePhotos.splice(index, 1);
+            user.save();
+          });
+          photo.remove();
+          return res.status(200).json(photo);
+        });
       });
-      photo.remove();
-      return res.status(200).json(photo);
     });
   });
 

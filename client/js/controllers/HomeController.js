@@ -30,7 +30,7 @@ app.controller('SLController', ['$scope', 'userService', '$location',
       userService.login(user).then(function(data){
         userService.setCurrentUser(data);
         $location.path("/photos");
-        if (data.status===401){
+        if (data.status===401 || data.status===500){
           $scope.view.lErrors = data.data;
         }
         $scope.user = {};
