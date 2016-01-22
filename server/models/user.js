@@ -25,8 +25,9 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
   }],
-  profilePicture: {
-    type: String
+  profile: {
+    type: String,
+    default: ""
   }
 });
 
