@@ -13,9 +13,6 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  profilePicture: {
-    type: String,
-  },
   likedPhotos: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
@@ -27,7 +24,10 @@ var userSchema = new mongoose.Schema({
   photos:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
-  }]
+  }],
+  profilePicture: {
+    type: String
+  }
 });
 
 userSchema.pre('save', function(next) {
