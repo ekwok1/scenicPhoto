@@ -84,6 +84,12 @@
 }
 
 /*PROFILE*/
+@media (min-width: 767px) {
+  .leftPanel {
+    position: fixed;
+    width: 30%;
+  }
+}
 body {
   background-color: lightgrey;
 }
