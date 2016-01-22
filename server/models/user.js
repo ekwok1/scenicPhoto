@@ -13,6 +13,10 @@ var userSchema = new mongoose.Schema({
     type:String,
     required: true
   },
+  favoritePhotos: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Photo"
+  }],
   photos:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"

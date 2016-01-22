@@ -35,6 +35,14 @@ var photoSchema = new mongoose.Schema({
   numComments: {
     type: Number,
     default: 0
+  },
+  numLikes: {
+    type: Number,
+    default: 0
+  },
+  numFavorites: {
+    type: Number,
+    default: 0
   }
 });
 
