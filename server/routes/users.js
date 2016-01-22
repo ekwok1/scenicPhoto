@@ -30,11 +30,14 @@ router.post("/login", function(req, res){
 // API route for GET and PUT user
 router.route("/:id")
   .get(function(req, res){
-    db.User.findById(req.params.id, function(err, user){
-      if (err) return res.status(500).send(err);
-      if (!user) return res.status(401).send(err);
-      return res.status(200).json(user);
-    });
+    db.User.findById(req.params.id)
+      .populate('photos')
+      .exec(function(err, user){
+        if (err) return res.status(500).send(err);
+        if (!user) return res.status(401).send(err);
+        return res.status(200).json(user);
+      }
+    );
   })
   .put(function(req, res){
     db.User.findByIdAndUpdate(req.params.id, req.body, function(err, user){

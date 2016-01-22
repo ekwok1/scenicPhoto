@@ -7,6 +7,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // SPA booleans
     $scope.view = {};
+
     if (currentUser.username === user.username) {
       $scope.view.showProfile = true;
       $scope.view.showFollow = false;
@@ -14,6 +15,13 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showProfile = false;
       $scope.view.showFollow = true;
     }
+
+    $scope.view.showEditForm = false;
+
+    // SPA methods
+    $scope.toggleEditForm = function(){
+      $scope.view.showEditForm = !$scope.view.showEditForm;
+    };
 
     // navbar
     $scope.logout = function(){
@@ -25,10 +33,14 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     $scope.editProfile.profile = user.profile;
 
     $scope.edit = function(editProf){
-      if (editProf.profile === "") {
+      if (currentUser.username !== user.username) {
+        alert("Stop.");
+        userService.logout();
+      } else if (editProf.profile === "") {
         editProf.profile = "http://www.cs.colostate.edu/~bplungis/Proj4/Users/Mplungis/images/pic.jpg";
+      } else {
+        userService.updateUser(user._id, editProf);
       }
-      userService.updateUser(user._id, editProf);
     };
   }
 ]);
