@@ -8,6 +8,20 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         controller: 'SLController',
         preventWhenLoggedIn: true
       })
+      .when('/users/:id', {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileController',
+        restricted: true,
+        resolve: {
+          currentUser: ['userService', function(userService){
+            return userService.getCurrentUser();
+          }],
+          user: ['userService', function(userService){
+            var userId = userService.getCurrentUserId();
+            return userService.getSingleUser(userId);
+          }]
+        }
+      })
       .when('/photos', {
         templateUrl: 'templates/photos.html',
         controller: 'PhotosController',
