@@ -14,11 +14,23 @@ app.controller('PhotosController',
 
     // STAT functions
     $scope.like = function(id, photo){
-      if (user.likedPhotos.indexOf(id) === -1) {
+      if (user.likedPhotos.indexOf(id) === -1){
         photo.numLikes++;
         photoService.addStat(id, photo)
         .then(function(){
           user.likedPhotos.push(photo._id);
+          userService.updateUser(user._id, user);
+        });
+      }
+    };
+
+    $scope.dislike = function(id, photo){
+      var index = user.likedPhotos.indexOf(id);
+      if (index !== -1) {
+        photo.numLikes--;
+        photoService.addStat(id, photo)
+        .then(function(){
+          user.likedPhotos.splice(index, 1);
           userService.updateUser(user._id, user);
         });
       }

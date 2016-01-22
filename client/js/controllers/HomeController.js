@@ -19,7 +19,7 @@ app.controller('SLController', ['$scope', 'userService', '$location',
       userService.signup(newUser).then(function(data){
         userService.setCurrentUser(data);
         $location.path("/photos");
-        if (data.status===400){
+        if (data.status===500){
           $scope.view.sErrors = data.data;
         }
         $scope.newUser = {};
@@ -30,7 +30,7 @@ app.controller('SLController', ['$scope', 'userService', '$location',
       userService.login(user).then(function(data){
         userService.setCurrentUser(data);
         $location.path("/photos");
-        if (data.status===400){
+        if (data.status===401){
           $scope.view.lErrors = data.data;
         }
         $scope.user = {};
