@@ -27,6 +27,11 @@ app.service("photoService", ['$http', 'userService',
         return $http.delete("/api/photos/"+photoId).then(function(photo){
           return photo.data;
         });
+      },
+      addStat: function(photoId, editPhoto){
+        return $http.put("/api/photos/"+photoId, editPhoto).then(function(photo){
+          return photo.data;
+        });
       }
     };
   }

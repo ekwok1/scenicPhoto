@@ -11,11 +11,15 @@ app.controller('PhotosController',
     $scope.view.showPhotoForm = false;
     $scope.view.pErrors = false;
 
-    // STAT counters
-    $scope.stats = {};
-    $scope.stats.comments = photos.numComments;
+    // STAT functions
+    $scope.like = function(id, photo){
+      photo.numLikes++;
+      photoService.addStat(id, photo).then(function(photo){
+        alert("hi");
+      });
+    };
     
-    // functions
+    // navbar and ux functions
     $scope.toggleForm = function(){
       $scope.view.showPhotoForm = !$scope.view.showPhotoForm;
       $scope.newPhoto = {};

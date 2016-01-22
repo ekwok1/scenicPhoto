@@ -94,16 +94,16 @@
             <div class="photoUsername"><em>@{{photo.username}}</em></div>
             <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
-            <!-- HARD CODE FOR UI -->
+            <!-- stats pills -->
             <ul class="nav nav-pills">
               <li class="photoStatsHome">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
-                Likes <span class="badge">0</span>
+                Likes <span class="badge">{{photo.numLikes}}</span>
               </li>
               <li class="photoStatsHome">
                 <span class="glyphicon glyphicon-heart"></span>
                 Favorites
-                <span class="badge">0</span>
+                <span class="badge">{{photo.numFavorites}}</span>
               </li>
               <li>
                 <span class="glyphicon glyphicon-comment"></span>
@@ -112,24 +112,26 @@
               </li>
             </ul>
             <div class="hr"></div>
-            <!-- END HARD CODE -->
+
             <div class="photoCaption">Caption:</div>
             <div class="photoDescription">{{photo.description}}</div>
             <div class="hr"></div>
+
             <!-- HARD CODE FOR UI -->
             <div>
-              <button class="btn btn-success btn-sm btn-block">Like!</button>
+              <button class="btn btn-success btn-sm btn-block" ng-click="like(photo._id, photo)">Like!</button>
               <!-- <button class="btn btn-danger btn-sm btn-block">Unlike</button> -->
               <button class="btn btn-info btn-sm btn-block">Favorite!</button>
               <!-- <button class="btn btn-warning btn-sm btn-block">Unfavorite</button> -->
             <!-- END HARD CODE -->
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
   <div class="col-sm-1"></div>
 </div>
 
