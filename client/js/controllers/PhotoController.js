@@ -113,6 +113,7 @@ app.controller("PhotoController",
 
     // stat counters
     $scope.numComments = comments.length;
+    $scope.numLikes = photo.numLikes;
 
     // navbar and UX methods
     $scope.showButtons = function(){
