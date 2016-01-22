@@ -130,12 +130,13 @@ app.controller("PhotoController",
     };
 
     $scope.deleteComment = function(index){
-      if ($scope.comments[index].username !== currentUser.username){
-        $scope.view.cErrors = "You cannot delete another users' comments.";
-      } else {
+      var username = $scope.comments[index].username;
+      if (username === currentUser.username || currentUser.username === photo.username) {
         var cId = $scope.comments[index]._id;
         $scope.comments.splice(index, 1);
         commentService.deleteComment($route.current.params.id, cId);
+      } else {
+        $scope.view.cErrors = "You cannot delete another users' comments.";
       }
     };
 
