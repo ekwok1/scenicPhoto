@@ -102,6 +102,7 @@ app.controller("PhotoController",
 
     $scope.resetAlert = function(){
       $scope.view.eErrors = false;
+      $scope.view.cErrors = false;
     };
 
     $scope.logout = function(){
@@ -111,9 +112,9 @@ app.controller("PhotoController",
     // POST for comments
     $scope.post = function(comment){
       if (comment.username !== currentUser.username){
-        $scope.view.cError = "You cannot post comments as a different user.";
+        $scope.view.cErrors = "You cannot post comments as a different user.";
       } else if (comment.comment === "") {
-        $scope.view.cError = "You cannot post a blank comment.";
+        $scope.view.cErrors = "You cannot post a blank comment.";
       } else {
         commentService.postComment($route.current.params.id, comment).then(function(comment){
           $scope.comments.push(comment);

@@ -155,7 +155,7 @@
           <tbody>
 
             <tr ng-repeat="comment in comments | orderBy: '-created_at'">
-              <td>{{comment.username}}: {{comment.comment}}</td>
+              <td><strong>{{comment.username}}</strong>: {{comment.comment}}</td>
             </tr>
             
           </tbody>
@@ -163,7 +163,7 @@
 
         <!-- form for submitting comments -->
         <form ng-submit="post(comment)">
-          <div class="row">
+          <div class="row" ng-show="false">
             <input type="text" ng-model="comment.username">
           </div>
           <div class="row">
