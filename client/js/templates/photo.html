@@ -155,8 +155,10 @@
           <tbody>
 
             <tr ng-repeat="comment in comments | orderBy: '-created_at' track by $index">
-              <td><strong>{{comment.username}}</strong>: {{comment.comment}}</td>
-              <td ng-show="canDelete(comment.username)">X</td>
+              <td class="col-sm-11"><strong>{{comment.username}}</strong>: {{comment.comment}}</td>
+              <td class="col-sm-1" ng-show="canDelete(comment.username)" ng-click="deleteComment($index)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </td>
             </tr>
             
           </tbody>
@@ -166,6 +168,7 @@
         <form ng-submit="post(comment)">
           <div class="row" ng-show="false">
             <input type="text" ng-model="comment.username">
+            <input type="text" ng-model="comment.id">
           </div>
           <div class="row">
             <div class="col-sm-9">

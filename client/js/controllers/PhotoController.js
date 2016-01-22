@@ -59,7 +59,7 @@ app.controller("PhotoController",
     
     // from resolves
     $scope.currentUser = currentUser;
-    $scope.comments = comments;
+    $scope.comments = comments.reverse();
     
     // SPA booleans
     $scope.view = {};
@@ -117,7 +117,7 @@ app.controller("PhotoController",
         $scope.view.cErrors = "You cannot post a blank comment.";
       } else {
         commentService.postComment($route.current.params.id, comment).then(function(comment){
-          $scope.comments.push(comment);
+          $scope.comments.unshift(comment);
           $scope.comment = {};
           $scope.comment.username = currentUser.username;
         });
@@ -127,6 +127,16 @@ app.controller("PhotoController",
     $scope.canDelete = function(user){
       if (currentUser.username === photo.username) return true;
       return currentUser.username === user;
+    };
+
+    $scope.deleteComment = function(index){
+      if ($scope.comments[index].username !== currentUser.username){
+        $scope.view.cErrors = "You cannot delete another users' comments.";
+      } else {
+        var cId = $scope.comments[index]._id;
+        $scope.comments.splice(index, 1);
+        commentService.deleteComment($route.current.params.id, cId);
+      }
     };
 
     // PUT and DELETE for photo
