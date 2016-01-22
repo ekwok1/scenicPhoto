@@ -35,7 +35,7 @@
       <!-- username and photo -->
       <div class="text-center">
         <div class="profileUsername">{{currentUser.username}}</div>
-        <img src="../../images/defaultProfile.jpg" class="circle">
+        <img ng-src="{{editProfile.profile}}" class="circle">
       </div>
       <div>
         
@@ -80,13 +80,13 @@
   </div>
   <div class="col-sm-7">
     <!-- update personal information form -->
-    <form class="form-horizontal">
+    <form class="form-horizontal" ng-submit="edit(editProfile)">
       <fieldset>
         <legend>Update Profile</legend>
         <div class="form-group">
           <label class="col-sm-3 control-label">Profile Picture</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" ng-model="editProfile.profile">
           </div>
         </div>
         <div class="form-group">
