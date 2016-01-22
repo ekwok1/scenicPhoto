@@ -25,7 +25,8 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // SPA methods
     $scope.toggleEditForm = function(){
-      $scope.view.showEditForm = !$scope.view.showEditForm;
+      $scope.view.showEditForm = true;
+      $scope.view.allPhotos = false;
     };
 
     // edit form
@@ -45,6 +46,12 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // showing photos
     $scope.photos = user.photos;
+    $scope.view.allPhotos = true;
+
+    $scope.toggleAllPhotos = function(){
+      $scope.view.allPhotos = true;
+      $scope.view.showEditForm = false;
+    };
   }
 ]);
 

@@ -41,7 +41,7 @@
         
       </div>
       <!-- photos -->
-      <table class="table">
+      <table class="table" ng-click="toggleAllPhotos()">
         <thead>
           <th class="tableValue">{{user.photos.length}} photos</th>
         </thead>
@@ -77,7 +77,7 @@
       </table>
     </div>
   </div>
-  
+
   <div class="col-sm-8">
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
@@ -96,8 +96,9 @@
         </div>
       </fieldset>
     </form>
+
     <!-- see my photos -->
-    <div class="panel panel-primary" ng-repeat="photo in photos">
+    <div class="panel panel-primary" ng-repeat="photo in photos" ng-show="view.allPhotos">
       <div class="panel-heading">
         <span class="photoTitle">{{photo.title}}</span>
       </div>
