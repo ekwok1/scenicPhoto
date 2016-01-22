@@ -34,6 +34,7 @@ commentSchema.pre('remove', function(next){
     if (!photo) return next();
     var index = photo.comments.indexOf(commentId);
     photo.comments.splice(index, 1);
+    photo.numComments--;
     photo.save();
     next();
   });

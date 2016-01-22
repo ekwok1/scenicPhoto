@@ -26,6 +26,7 @@ router.route('/:id/comments')
         if (err) return res.status(500).send(err);
         comment.photo = photo;
         photo.comments.push(comment);
+        photo.numComments++;
         comment.save();
         photo.save();
         return res.status(200).json(comment);

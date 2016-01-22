@@ -31,7 +31,11 @@ var photoSchema = new mongoose.Schema({
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment"
-  }]
+  }],
+  numComments: {
+    type: Number,
+    default: 0
+  }
 });
 
 var Photo = mongoose.model("Photo", photoSchema);
@@ -69,6 +73,8 @@ photoSchema.pre('remove', function(next){
 });
 
 module.exports = Photo;
+
+
 
 
 
