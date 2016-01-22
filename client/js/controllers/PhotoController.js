@@ -26,6 +26,7 @@ app.controller('PhotosController',
       userService.logout();
     };
 
+    // POST for photos
     $scope.post = function(newPhoto){
       if (newPhoto.username === currentUser.username) {
         photoService.postPhoto(newPhoto).then(function(photo){
@@ -85,6 +86,9 @@ app.controller("PhotoController",
     $scope.comment = {};
     $scope.comment.username = currentUser.username;
 
+    // stat counters
+    $scope.numComments = comments.length;
+
     // navbar and UX methods
     $scope.showButtons = function(){
       return currentUser.username === photo.username;
@@ -120,6 +124,7 @@ app.controller("PhotoController",
           $scope.comments.unshift(comment);
           $scope.comment = {};
           $scope.comment.username = currentUser.username;
+          $scope.numComments++;
         });
       }
     };
@@ -134,7 +139,9 @@ app.controller("PhotoController",
       if (username === currentUser.username || currentUser.username === photo.username) {
         var cId = $scope.comments[index]._id;
         $scope.comments.splice(index, 1);
-        commentService.deleteComment($route.current.params.id, cId);
+        commentService.deleteComment($route.current.params.id, cId).then(function(comment){
+          $scope.numComments--;
+        });
       } else {
         $scope.view.cErrors = "You cannot delete another users' comments.";
       }
