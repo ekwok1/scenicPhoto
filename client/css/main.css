@@ -56,7 +56,7 @@
   font-size: 200%;
 }
 .photoDate {
-  font-size: 120%;
+  font-size: 110%;
 }
 .hr {
   color: #D6D6D6;
@@ -65,16 +65,23 @@
   margin-top: 6px;
   margin-bottom: 6px;
 }
-.photoLikes {
-  margin-right: 10px;
+.photoStats {
+  margin-right: 6px;
+}
+.photoStatsHome {
+  margin-right: 50px;
 }
 .photoCaption {
-  font-size: 130%;
+  font-size: 140%;
 }
 .photoDescription {
   font-size: 115%;
 }
 
+/*PHOTO SHOW*/
+.commentDate {
+  font-size: 85%;
+}
 
 
 

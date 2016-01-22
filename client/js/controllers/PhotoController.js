@@ -151,7 +151,7 @@ app.controller("PhotoController",
       } else {
         editPhoto.updated_at = Date.now();
         photoService.editPhoto(editPhoto).then(function(photo){
-          $scope.toggleForm();
+          $scope.toggleComment();
         });
       }
     };

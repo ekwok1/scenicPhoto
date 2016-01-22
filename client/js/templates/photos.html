@@ -91,18 +91,23 @@
             </a>
           </div>
           <div class="col-sm-5">
-            <div class="photoUsername">@{{photo.username}}</div>
+            <div class="photoUsername"><em>@{{photo.username}}</em></div>
             <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
             <!-- HARD CODE FOR UI -->
             <ul class="nav nav-pills">
-              <li class="photoLikes">
+              <li class="photoStatsHome">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
                 Likes <span class="badge">0</span>
               </li>
-              <li>
+              <li class="photoStatsHome">
                 <span class="glyphicon glyphicon-heart"></span>
                 Favorites
+                <span class="badge">0</span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-comment"></span>
+                Comments
                 <span class="badge">0</span>
               </li>
             </ul>
