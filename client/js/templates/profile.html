@@ -30,14 +30,15 @@
 </nav>
 
 <div class="profileLeft">
-
-  <table class="table">
+  <!-- username -->
+  <table class="table profilePicture">
     <tbody>
       <td class="profileUsername">{{currentUser.username}}</td>
     </tbody>
   </table>
 
-  <table class="table">
+  <!-- profile picture -->
+  <table class="table profilePicture">
     <thead>
       <th>
         <img src="../../images/defaultProfile.jpg" class="circle">
@@ -73,9 +74,14 @@
     </thead>
   </table>
 
-
-
+  <!-- follow button -->
+  <table class="table">
+    <thead>
+      <th><button class="btn btn-primary btn-block">Follow</button></th>
+    </thead>
+  </table>
 </div>
+
 
 
 

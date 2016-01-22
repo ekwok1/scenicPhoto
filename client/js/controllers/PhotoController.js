@@ -221,7 +221,7 @@ app.controller("PhotoController",
       } else {
         photoService.deletePhoto(photoId).then(function(photo){
           $window.location.reload();
-          $location.path("/photos");
+          $location.path("/users/"+currentUser.id);
         });
       }
     };

@@ -85,24 +85,33 @@
 
 /*PROFILE*/
 .profileLeft {
-  background-color: lightgrey;
+/*  background-color: lightgrey;*/
+  border-right: solid lightgrey 1.5px;
   width: 35%;
   height: 630px;
-  margin-top: -21px;
+  margin-top: -22px;
+}
+.tableValue:hover {
+  background-color: dodgerblue;
+}
+.profilePicture {
+  background-color: dodgerblue;
 }
 .circle {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   margin-left: 26%;
   margin-top: -5%;
 }
 .profileUsername {
   text-align: center;
-  font-size: 200%;
+  font-size: 215%;
+  color: white;
 }
 .tableValue {
   text-align: center;
+  font-size: 125%;
 }
 
 
