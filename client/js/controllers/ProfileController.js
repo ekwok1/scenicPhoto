@@ -32,6 +32,9 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // edit form
     $scope.editProfile = {};
+    if (user.profile === "") {
+      user.profile = "http://www.cs.colostate.edu/~bplungis/Proj4/Users/Mplungis/images/pic.jpg";
+    }
     $scope.editProfile.profile = user.profile;
 
     $scope.edit = function(editProf){

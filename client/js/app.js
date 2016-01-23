@@ -16,9 +16,8 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
           currentUser: ['userService', function(userService){
             return userService.getCurrentUser();
           }],
-          user: ['userService', function(userService){
-            var userId = userService.getCurrentUserId();
-            return userService.getSingleUser(userId);
+          user: ['userService', '$route', function(userService, $route){
+            return userService.getSingleUser($route.current.params.id);
           }]
         }
       })
