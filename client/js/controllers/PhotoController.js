@@ -37,7 +37,28 @@ app.controller('PhotosController',
     };
 
     $scope.favorite = function(id, photo){
-      if (user.favoritePhotos.indexOf(id) === -1){
+      // new approach because populated ObjectId arrays with whole object
+      // method efficiency vs. storing another array in database memory...
+      var contains = false;
+      var addOnce = true;
+      for (i=0; i<user.favoritePhotos.length; i++){
+        if (user.favoritePhotos[i]._id === id) {
+          contains = true;
+          break;
+        }
+      }
+      if (!contains) {
+        photo.numFavorites++;
+        addOnce = false;
+        photoService.addStat(id, photo)
+        .then(function(){
+          user.favoritePhotos.push(photo._id);
+          userService.updateUser(user._id, user);
+        });
+      }
+
+      // old approach before populate array
+      if (!contains && addOnce && user.favoritePhotos.indexOf(photo) === -1){
         photo.numFavorites++;
         photoService.addStat(id, photo)
         .then(function(){
