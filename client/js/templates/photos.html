@@ -91,7 +91,7 @@
             </a>
           </div>
           <div class="col-sm-5">
-            <div class="photoUsername"><em>@{{photo.username}}</em></div>
+            <div class="photoUsername"><a ng-href="/users/{{photo.user}}"><em>@{{photo.username}}</em></a></div>
             <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
             <!-- stats pills -->
