@@ -59,8 +59,15 @@ userSchema.pre('save', function(next) {
 userSchema.pre('remove', function(next){
   var user = this;
   var photos = user.photos;
+  // in postman
   photos.forEach(function(photoId){
     db.Photo.findOne({ '_id': photoId }, function(err, photo){
+      photo.remove();
+    });
+  });
+  // in app
+  photos.forEach(function(photo){
+    db.Photo.findOne({ '_id': photo._id }, function(err, photo){
       photo.remove();
     });
   });
