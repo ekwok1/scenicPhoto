@@ -42,8 +42,16 @@
 .photo {
   width: 100%;
 }
-.photoTitle {
+.photoTitle, .photoImg {
   font-size: 120%;
+  color: white;
+}
+.photoTitle:hover, .photoImg:hover {
+  color: white;
+  text-decoration: none;
+}
+.photoLink {
+  text-decoration: none;
 }
 .photoTitleLink {
   color: white;
