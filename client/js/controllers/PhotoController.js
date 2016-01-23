@@ -12,7 +12,7 @@ app.controller('PhotosController',
     $scope.view.showPhotoForm = false;
     $scope.view.pErrors = false;
 
-    // STAT functions
+    // statistics functions
     $scope.like = function(id, photo){
       if (user.likedPhotos.indexOf(id) === -1){
         photo.numLikes++;
@@ -106,6 +106,7 @@ app.controller('PhotosController',
           } else {
             $scope.newPhoto = {};
             $scope.photos.push(photo);
+            $scope.user.photos.push(photo);
             $scope.view.showPhotoForm = false;
           }
         });
