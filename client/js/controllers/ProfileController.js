@@ -27,6 +27,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     $scope.toggleEditForm = function(){
       $scope.view.showEditForm = true;
       $scope.view.allPhotos = false;
+      $scope.view.favPhotos = false;
     };
 
     // edit form
@@ -50,6 +51,17 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     $scope.toggleAllPhotos = function(){
       $scope.view.allPhotos = true;
+      $scope.view.showEditForm = false;
+      $scope.view.favPhotos = false;
+    };
+
+    // showing favorite photos
+    $scope.favoritePhotos = user.favoritePhotos;
+    $scope.view.favPhotos = false;
+
+    $scope.toggleFavPhotos = function(){
+      $scope.view.favPhotos = true;
+      $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
     };
   }
