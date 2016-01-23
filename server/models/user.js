@@ -66,11 +66,11 @@ userSchema.pre('remove', function(next){
     });
   });
   // in app
-  photos.forEach(function(photo){
-    db.Photo.findOne({ '_id': photo._id }, function(err, photo){
-      photo.remove();
-    });
-  });
+  // photos.forEach(function(photo){
+  //   db.Photo.findOne({ '_id': photo._id }, function(err, photo){
+  //     photo.remove();
+  //   });
+  // });
   next();
 });
 
