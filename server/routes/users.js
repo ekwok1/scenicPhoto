@@ -32,7 +32,7 @@ router.route("/:id")
   .get(function(req, res){
     db.User.findById(req.params.id)
       .populate('photos')
-      .populate('favoritePhotos')
+      .populate('favoritePhotosPop')
       .exec(function(err, user){
         if (err) return res.status(500).send(err);
         if (!user) return res.status(401).send(err);

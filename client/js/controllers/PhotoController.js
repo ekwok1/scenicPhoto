@@ -39,30 +39,31 @@ app.controller('PhotosController',
     $scope.favorite = function(id, photo){
       // new approach because populated ObjectId arrays with whole object
       // method efficiency vs. storing another array in database memory...
-      var contains = false;
-      var addOnce = true;
-      for (i=0; i<user.favoritePhotos.length; i++){
-        if (user.favoritePhotos[i]._id === id) {
-          contains = true;
-          break;
-        }
-      }
-      if (!contains) {
-        photo.numFavorites++;
-        addOnce = false;
-        photoService.addStat(id, photo)
-        .then(function(){
-          user.favoritePhotos.push(photo._id);
-          userService.updateUser(user._id, user);
-        });
-      }
+      // var contains = false;
+      // var addOnce = true;
+      // for (i=0; i<user.favoritePhotos.length; i++){
+      //   if (user.favoritePhotos[i]._id === id) {
+      //     contains = true;
+      //     break;
+      //   }
+      // }
+      // if (!contains) {
+      //   photo.numFavorites++;
+      //   addOnce = false;
+      //   photoService.addStat(id, photo)
+      //   .then(function(){
+      //     user.favoritePhotos.push(photo._id);
+      //     userService.updateUser(user._id, user);
+      //   });
+      // }
 
       // old approach before populate array
-      if (!contains && addOnce && user.favoritePhotos.indexOf(photo) === -1){
+      if (user.favoritePhotos.indexOf(photo) === -1){
         photo.numFavorites++;
         photoService.addStat(id, photo)
         .then(function(){
           user.favoritePhotos.push(photo._id);
+          user.favoritePhotosPop.push(photo._id);
           userService.updateUser(user._id, user);
         });
       }
@@ -75,6 +76,7 @@ app.controller('PhotosController',
         photoService.addStat(id, photo)
         .then(function(){
           user.favoritePhotos.splice(index, 1);
+          user.favoritePhotosPop.splice(index, 1);
           userService.updateUser(user._id, user);
         });
       }

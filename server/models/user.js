@@ -21,6 +21,10 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
   }],
+  favoritePhotosPop: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Photo"
+  }],
   photos:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"

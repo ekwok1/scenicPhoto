@@ -59,7 +59,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     };
 
     // showing favorite photos
-    $scope.favoritePhotos = user.favoritePhotos;
+    $scope.favoritePhotos = user.favoritePhotosPop;
     $scope.view.favPhotos = false;
 
     $scope.toggleFavPhotos = function(){
