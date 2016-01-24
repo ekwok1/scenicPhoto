@@ -16,6 +16,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     if (currentUser.username === user.username) {
       $scope.view.showProfile = true;
       $scope.view.showFollow = false;
+      $scope.view.showPending = false;
     } else {
       $scope.view.showProfile = false;
     }
@@ -92,22 +93,29 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
           }
 
           if (!sent) {
+
             // push follow request to friend
             followService.deleteFields(selfReq);
             usernameReq.pendingFollowRequest.push(selfReq);
+            usernameReq.pendingFollowRequestPop.push(selfReq);
             $scope.user.pendingFollowRequest.push(selfReq._id);
+            $scope.user.pendingFollowRequestPop.push(selfReq._id);
             userService.updateUser(usernameReq.username, usernameReq).then(function(){
               // push follow request to self
               followService.deleteFields(usernameReq);
               delete usernameReq.pendingFollowRequest;
+              delete usernameReq.pendingFollowRequestPop;
               selfReq.pendingFollowing.push(usernameReq);
-              userService.updateUser(selfReq.username, selfReq);
+              userService.updateUser(selfReq.username, selfReq).then(function(){
+                $scope.test = selfReq;
+                $scope.test2 = usernameReq;
+              });
             });
           }
         });
-        $scope.view.showFollow = false;
-        $scope.view.showPending = true;
       });
+      $scope.view.showFollow = false;
+      $scope.view.showPending = true;
     };
   }
 ]);
