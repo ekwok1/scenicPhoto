@@ -33,8 +33,8 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
             return photoService.getPhotos();
           }],
           user: ['userService', function(userService){
-            var userId = userService.getCurrentUserId();
-            return userService.getSingleUser(userId);
+            var user = userService.getCurrentUser();
+            return userService.getSingleUser(user.username);
           }]
         }
       })
