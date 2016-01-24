@@ -50,6 +50,7 @@ router.route("/:id")
           users.forEach(function(user){
             var index = user.favoritePhotos.indexOf(req.params.id);
             user.favoritePhotos.splice(index, 1);
+            user.favoritePhotosPop.splice(index, 1);
             user.save();
           });
           photo.remove();

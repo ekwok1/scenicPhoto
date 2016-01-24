@@ -13,6 +13,14 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profile: {
+    type: String,
+    default: ""
+  },
+  photos:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Photo"
+  }],
   likedPhotos: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
@@ -25,14 +33,23 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Photo"
   }],
-  photos:[{
+  pendingFollowing: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Photo"
+    ref: "User"
   }],
-  profile: {
-    type: String,
-    default: ""
-  }
+  pendingFollowRequest: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  Following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+  Followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }],
+
 });
 
 userSchema.pre('save', function(next) {
