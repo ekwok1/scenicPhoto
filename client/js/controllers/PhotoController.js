@@ -64,7 +64,7 @@ app.controller('PhotosController',
         .then(function(){
           user.favoritePhotos.push(photo._id);
           user.favoritePhotosPop.push(photo._id);
-          userService.updateUser(user._id, user);
+          userService.updateUser(user.username, user);
         });
       }
     };
@@ -77,7 +77,7 @@ app.controller('PhotosController',
         .then(function(){
           user.favoritePhotos.splice(index, 1);
           user.favoritePhotosPop.splice(index, 1);
-          userService.updateUser(user._id, user);
+          userService.updateUser(user.username, user);
         });
       }
     };

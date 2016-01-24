@@ -18,7 +18,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showFollow = false;
     } else {
       $scope.view.showProfile = false;
-      $scope.view.showFollow = true;
     }
 
     if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
@@ -26,8 +25,12 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showFollow = false;
     } else {
       $scope.view.showPending = false;
-      $scope.view.showFollow = true;
+      if (currentUser.username !== user.username) {
+        $scope.view.showFollow = true;
+      }
     }
+
+
 
     $scope.view.showEditForm = false;
 
