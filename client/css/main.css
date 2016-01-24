@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url(https://fonts.googleapis.com/css?family=Lilita+One);
 
 /*HOMEPAGE*/
 
@@ -106,6 +107,7 @@ body {
   margin-top: -21px;
 }
 .profileUsername {
+  font-family: "Lilita One";
   font-size: 225%;
   color: black;
   margin-top: 12px;

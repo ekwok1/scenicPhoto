@@ -51,21 +51,22 @@
       <!-- followers -->
       <table class="table">
         <thead>
-          <th class="tableValue">0 followers</th>
+          <th class="tableValue">{{user.followers.length}} followers</th>
+          <th class="tableValue" ng-show="view.showPendingRequest" ng-click="togglePendingFollowInfo()">{{user.pendingFollowRequest.length}} pending</th>
         </thead>
       </table>
 
       <!-- following -->
       <table class="table">
         <thead>
-          <th class="tableValue">0 following</th>
+          <th class="tableValue">{{user.following.length}} following</th>
         </thead>
       </table>
 
       <!-- favorited -->
       <table class="table" ng-click="toggleFavPhotos()">
         <thead>
-          <th class="tableValue">{{user.favoritePhotosPop.length}} favorited</th>
+          <th class="tableValue">{{user.favoritePhotos.length}} favorited</th>
         </thead>
       </table>
       
@@ -81,7 +82,7 @@
   </div>
 
   <div class="col-sm-8">
-    {{user}}
+    {{pending}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
@@ -142,7 +143,21 @@
     </div>
 
     <!-- see my followers -->
+
     <!-- see my following -->
+
+    <!-- see my pending following -->
+    <div class="col-sm-4">
+      <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{p.username}}</h3>
+        </div>
+        <div class="panel-body">
+          <img ng-src="{{p.profile}}" class="circle">
+        </div>
+      </div>
+    </div>
+
 
     <!-- see my favorites -->
     <div class="panel panel-primary" ng-repeat="photo in favoritePhotos" ng-show="view.favPhotos">

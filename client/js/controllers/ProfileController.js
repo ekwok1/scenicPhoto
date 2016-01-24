@@ -15,6 +15,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     if (currentUser.username === user.username) {
       $scope.view.showProfile = true;
+      $scope.view.showPendingRequest = true;
       $scope.view.showFollow = false;
       $scope.view.showPending = false;
     } else {
@@ -38,6 +39,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showEditForm = true;
       $scope.view.allPhotos = false;
       $scope.view.favPhotos = false;
+      $scope.view.pendingFollowInfo = false;
     };
 
     // edit form
@@ -69,6 +71,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.allPhotos = true;
       $scope.view.showEditForm = false;
       $scope.view.favPhotos = false;
+      $scope.view.pendingFollowInfo = false;
     };
 
     // showing favorite photos
@@ -79,6 +82,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = true;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
+      $scope.view.pendingFollowInfo = false;
     };
 
     // follow button
@@ -116,6 +120,17 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       });
       $scope.view.showFollow = false;
       $scope.view.showPending = true;
+    };
+
+    // pending Follow Info
+    $scope.view.pendingFollowInfo = false;
+    $scope.pending = $scope.user.pendingFollowRequestPop;
+    $scope.togglePendingFollowInfo = function(){
+      $scope.view.pendingFollowInfo = true;
+      $scope.view.favPhotos = false;
+      $scope.view.allPhotos = false;
+      $scope.view.showEditForm = false;
+
     };
   }
 ]);
