@@ -30,8 +30,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       }
     }
 
-
-
     $scope.view.showEditForm = false;
 
     // SPA methods

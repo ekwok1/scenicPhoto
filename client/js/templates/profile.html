@@ -22,6 +22,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/photos">Photofeed</a></li>
+        <li ng-show="currentUser.username !== user.username"><a href="/users/{{currentUser.username}}">{{currentUser.username}}'s Profile</a></li>
         <li><a ng-click="logout()">Log out</a></li>
       </ul>
     </div>
@@ -155,7 +156,7 @@
           </div>
           <div class="col-sm-5">
             <div class="photoUsername" ng-show="photo.username === currentUser.username"><em>@{{photo.username}}</em></div>
-            <div class="photoUsername" ng-show="photo.username !== currentUser.username"><em><a ng-href="/users/{{photo.user}}" class="photoLink">@{{photo.username}}</a></em></div>
+            <div class="photoUsername" ng-show="photo.username !== currentUser.username"><em><a ng-href="/users/{{photo.username}}" class="photoLink">@{{photo.username}}</a></em></div>
 
             <div class="photoDate">{{photo.updated_at | date:'EEEE, MMMM d, y, h:mm a'}}</div>
             <div class="hr"></div>
