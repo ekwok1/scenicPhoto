@@ -1,5 +1,5 @@
-app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 'userService',
-  function($scope, currentUser, user, $route, userService){
+app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 'userService', 'followService',
+  function($scope, currentUser, user, $route, userService, followService){
 
     // from resolves
     $scope.currentUser = currentUser;
@@ -67,6 +67,16 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = true;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
+    };
+
+    // follow button
+    $scope.followReq = function(self, username){
+      followService.findSelf(self).then(function(self){
+        followService.findFriend(username).then(function(follow){
+          $scope.test2 = self;
+          $scope.test = follow;
+        });
+      });
     };
   }
 ]);

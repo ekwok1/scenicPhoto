@@ -24,6 +24,7 @@ app.service("userService", ['$http', '$window', '$location',
       },
       getSingleUser: function(username){
         return $http.get("/api/users/"+username).then(function(user){
+          // can secure user here
           return user.data;
         });
       },
