@@ -82,7 +82,6 @@
   </div>
 
   <div class="col-sm-8">
-    {{pending}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
@@ -147,15 +146,16 @@
     <!-- see my following -->
 
     <!-- see my pending following -->
+    {{user}}
     <div class="col-sm-4">
-      <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending">
+      <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending track by $index">
         <div class="panel-heading">
           <h3 class="panel-title"><a ng-href="/users/{{p.username}}" class="photoTitle">{{p.username}}</a></h3>
         </div>
         <div class="panel-body">
           <a ng-href="/users/{{p.username}}"><img ng-src="{{p.profile}}" class="circle"></a>
           <div class="col-sm-6">
-            <button class="btn btn-success">Accept</button>
+            <button class="btn btn-success" ng-click="acceptFollow(user, user.pendingFollowRequestPop, $index)">Accept</button>
           </div>
           <div class="col-sm-6">
             <button class="btn btn-danger">Reject</button>

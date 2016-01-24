@@ -122,7 +122,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showPending = true;
     };
 
-    // pending Follow Info
+    // pending follow display
     $scope.view.pendingFollowInfo = false;
     $scope.pending = $scope.user.pendingFollowRequestPop;
     $scope.togglePendingFollowInfo = function(){
@@ -130,6 +130,21 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = false;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
+    };
+
+    // pending follow methods
+    $scope.acceptFollow = function(self, followRequester, index){
+      // add followRequester to follower array
+      // remove followRequester from pendingFollowRequest(Pop) arrays
+      // add self to followRequester's following array
+      // remove self from followRequester's pendingFollowing array
+      // save to db
+    };
+
+    $scope.rejectFollow = function(self, followRequester, index){
+      // remove followRequester from pendingFollowRequest(Pop) arrays
+      // remove self from followRequester's pendingFollowing array
+      // save to db
 
     };
   }
