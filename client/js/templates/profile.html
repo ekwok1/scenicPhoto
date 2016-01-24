@@ -150,10 +150,16 @@
     <div class="col-sm-4">
       <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending">
         <div class="panel-heading">
-          <h3 class="panel-title">{{p.username}}</h3>
+          <h3 class="panel-title"><a ng-href="/users/{{p.username}}" class="photoTitle">{{p.username}}</a></h3>
         </div>
         <div class="panel-body">
-          <img ng-src="{{p.profile}}" class="circle">
+          <a ng-href="/users/{{p.username}}"><img ng-src="{{p.profile}}" class="circle"></a>
+          <div class="col-sm-6">
+            <button class="btn btn-success">Accept</button>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-danger">Reject</button>
+          </div>
         </div>
       </div>
     </div>
