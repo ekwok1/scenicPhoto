@@ -45,6 +45,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
         editProf.profile = "http://www.cs.colostate.edu/~bplungis/Proj4/Users/Mplungis/images/pic.jpg";
       } else {
         userService.updateUser(user._id, editProf);
+        $scope.toggleAllPhotos();
       }
     };
 
