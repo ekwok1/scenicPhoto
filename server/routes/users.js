@@ -28,9 +28,9 @@ router.post("/login", function(req, res){
 });
 
 // API route for GET and PUT user
-router.route("/:id")
+router.route("/:username")
   .get(function(req, res){
-    db.User.findById(req.params.id)
+    db.User.findOne({'username': req.params.username})
       .populate('photos')
       .populate('favoritePhotosPop')
       .exec(function(err, user){

@@ -8,7 +8,7 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
         controller: 'SLController',
         preventWhenLoggedIn: true
       })
-      .when('/users/:id', {
+      .when('/users/:username', {
         templateUrl: 'templates/profile.html',
         controller: 'ProfileController',
         restricted: true,
@@ -17,7 +17,7 @@ app.config(["$routeProvider", "$locationProvider", "$httpProvider",
             return userService.getCurrentUser();
           }],
           user: ['userService', '$route', function(userService, $route){
-            return userService.getSingleUser($route.current.params.id);
+            return userService.getSingleUser($route.current.params.username);
           }]
         }
       })

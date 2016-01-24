@@ -22,8 +22,8 @@ app.service("userService", ['$http', '$window', '$location',
       getCurrentUserId: function(){
         return JSON.parse($window.localStorage.getItem("user")).id;
       },
-      getSingleUser: function(id){
-        return $http.get("/api/users/"+id).then(function(user){
+      getSingleUser: function(username){
+        return $http.get("/api/users/"+username).then(function(user){
           return user.data;
         });
       },
