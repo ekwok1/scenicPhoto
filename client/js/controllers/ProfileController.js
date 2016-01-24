@@ -21,6 +21,14 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showFollow = true;
     }
 
+    if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
+      $scope.view.showPending = true;
+      $scope.view.showFollow = false;
+    } else {
+      $scope.view.showPending = false;
+      $scope.view.showFollow = true;
+    }
+
     $scope.view.showEditForm = false;
 
     // SPA methods
@@ -86,6 +94,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
             // push follow request to friend
             followService.deleteFields(selfReq);
             usernameReq.pendingFollowRequest.push(selfReq);
+            $scope.user.pendingFollowRequest.push(selfReq._id);
             userService.updateUser(usernameReq.username, usernameReq).then(function(){
               // push follow request to self
               followService.deleteFields(usernameReq);
@@ -95,6 +104,8 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
             });
           }
         });
+        $scope.view.showFollow = false;
+        $scope.view.showPending = true;
       });
     };
   }

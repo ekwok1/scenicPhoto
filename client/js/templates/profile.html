@@ -73,13 +73,14 @@
         <thead>
           <th ng-show="view.showProfile"><button class="btn btn-default btn-block" ng-click="toggleEditForm()">Update Profile</button></th>
           <th ng-show="view.showFollow"><button class="btn btn-default btn-block" ng-click="followReq(currentUser.username, user.username)">Follow</button></th>
+          <th ng-show="view.showPending"><button class="btn btn-default btn-block disabledButton" ng-disabled="true">Follow Request Pending</button></th>
         </thead>
       </table>
     </div>
   </div>
 
   <div class="col-sm-8">
-    {{test}}
+    {{user}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
