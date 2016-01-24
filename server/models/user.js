@@ -41,11 +41,11 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }],
-  Following: [{
+  following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }],
-  Followers: [{
+  followers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }],

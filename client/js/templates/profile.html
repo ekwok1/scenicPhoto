@@ -79,7 +79,11 @@
   </div>
 
   <div class="col-sm-8">
+    <button class="btn btn-default btn-block" ng-click="followReq(currentUser.username, user.username)">Follow</button>
     {{test}}
+    <br>
+    <br>
+    <br>
     {{test2}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">

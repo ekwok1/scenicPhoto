@@ -43,8 +43,10 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
         userService.logout();
       } else if (editProf.profile === "") {
         editProf.profile = "http://www.cs.colostate.edu/~bplungis/Proj4/Users/Mplungis/images/pic.jpg";
+        userService.updateUser(user.username, editProf);
+        $scope.toggleAllPhotos();
       } else {
-        userService.updateUser(user._id, editProf);
+        userService.updateUser(user.username, editProf);
         $scope.toggleAllPhotos();
       }
     };
@@ -71,13 +73,27 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // follow button
     $scope.followReq = function(self, username){
-      followService.findSelf(self).then(function(self){
-        followService.findFriend(username).then(function(follow){
-          $scope.test2 = self;
-          $scope.test = follow;
+      userService.getSingleUser(self).then(function(selfReq){
+        userService.getSingleUser(username).then(function(usernameReq){
+          // push follow request to friend
+          followService.deleteFields(selfReq);
+          usernameReq.pendingFollowRequest.push(selfReq);
+          userService.updateUser(usernameReq.username, usernameReq).then(function(){
+            // push follow request to self
+            followService.deleteFields(usernameReq);
+            delete usernameReq.pendingFollowRequest;
+            selfReq.pendingFollowing.push(usernameReq);
+            userService.updateUser(selfReq.username, selfReq).then(function(){
+
+              $scope.test = selfReq;
+              $scope.test2 = usernameReq;  
+            });
+          });
+
         });
       });
     };
+
   }
 ]);
 

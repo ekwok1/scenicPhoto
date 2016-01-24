@@ -41,7 +41,8 @@ router.route("/:username")
     );
   })
   .put(function(req, res){
-    db.User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+    delete req.body._id;
+    db.User.update({'username': req.params.username}, req.body, function(err, user){
       if (err) return res.status(500).send(err);
       if (!user) return res.status(401).send(err);
       return res.status(200).json(user);

@@ -24,12 +24,11 @@ app.service("userService", ['$http', '$window', '$location',
       },
       getSingleUser: function(username){
         return $http.get("/api/users/"+username).then(function(user){
-          // can secure user here
           return user.data;
         });
       },
-      updateUser: function(id, updateUser){
-        return $http.put("/api/users/"+id, updateUser).then(function(user){
+      updateUser: function(username, updateUser){
+        return $http.put("/api/users/"+username, updateUser).then(function(user){
           return user.data;
         });
       }
