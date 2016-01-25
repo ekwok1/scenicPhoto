@@ -12,13 +12,13 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button">Resources <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a ng-href="#">Hiker's Resource</a></li>
             <li><a ng-href="#">Photographer's Resource</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/photos">Photofeed</a></li>
@@ -158,7 +158,7 @@
           <h3 class="panel-title"><a ng-href="/users/{{f.username}}" class="photoTitle">{{f.username}}</a></h3>
         </div>
         <div class="panel-body">
-          <a ng-href="/users/{{f.username}}"><img ng-src="{{f.profile}}" class="circle"></a>
+          <a ng-href="/users/{{f.username}}"><img ng-src="{{f.profile}}" class="circle img-responsive"></a>
         </div>
       </div>
     </div>
@@ -170,7 +170,7 @@
           <h3 class="panel-title"><a ng-href="/users/{{f.username}}" class="photoTitle">{{f.username}}</a></h3>
         </div>
         <div class="panel-body">
-          <a ng-href="/users/{{f.username}}"><img ng-src="{{f.profile}}" class="circle"></a>
+          <a ng-href="/users/{{f.username}}"><img ng-src="{{f.profile}}" class="circle img-responsive"></a>
         </div>
       </div>
     </div>
@@ -183,7 +183,7 @@
           <h3 class="panel-title"><a ng-href="/users/{{p.username}}" class="photoTitle">{{p.username}}</a></h3>
         </div>
         <div class="panel-body">
-          <a ng-href="/users/{{p.username}}"><img ng-src="{{p.profile}}" class="circle"></a>
+          <a ng-href="/users/{{p.username}}"><img ng-src="{{p.profile}}" class="circle img-responsive"></a>
           <div class="col-sm-6">
             <button class="btn btn-success" ng-click="acceptFollow(user, user.pendingFollowRequestPop, $index)">Accept</button>
           </div>
