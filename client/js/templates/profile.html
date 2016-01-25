@@ -73,15 +73,27 @@
       <!-- follow button -->
       <table class="table button">
         <thead>
+          <!-- update profile -->
           <th ng-show="view.showProfile"><button class="btn btn-default btn-block" ng-click="toggleEditForm()">Update Profile</button></th>
+          
+          <!-- follow button -->
           <th ng-show="view.showFollow"><button class="btn btn-default btn-block" ng-click="followReq(currentUser.username, user.username)">Follow</button></th>
+          
+          <!-- request pending -->
           <th ng-show="view.showPending"><button class="btn btn-default btn-block disabledButton" ng-disabled="true">Follow Request Pending</button></th>
+          
+          <!-- unfollow button -->
+          <th ng-show="view.showUnfollow"><button class="btn btn-default btn-block" ng-click="unfollow(currentUser.username, user.username)">Unfollow</button></th>
+
         </thead>
       </table>
     </div>
   </div>
 
   <div class="col-sm-8">
+<!--   {{test}}
+  <br><br>
+  {{test2}} -->
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
@@ -146,7 +158,6 @@
     <!-- see my following -->
 
     <!-- see my pending following -->
-    {{user}}
     <div class="col-sm-4">
       <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending track by $index">
         <div class="panel-heading">

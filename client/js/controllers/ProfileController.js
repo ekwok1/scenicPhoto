@@ -18,16 +18,21 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showPendingRequest = true;
       $scope.view.showFollow = false;
       $scope.view.showPending = false;
+      $scope.view.showUnfollow = false;
     } else {
       $scope.view.showProfile = false;
-    }
+      if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
+        $scope.view.showPending = true;
+        $scope.view.showFollow = false;
+      } else {
+        $scope.view.showPending = false;
+      }
 
-    if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
-      $scope.view.showPending = true;
-      $scope.view.showFollow = false;
-    } else {
-      $scope.view.showPending = false;
-      if (currentUser.username !== user.username) {
+      if (user.followers.indexOf(currentUser.id) !== -1){
+        $scope.view.showUnfollow = true;
+        $scope.view.showFollow = false;
+      } else {
+        $scope.view.showUnfollow = false;
         $scope.view.showFollow = true;
       }
     }
@@ -51,7 +56,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     $scope.edit = function(editProf){
       if (currentUser.username !== user.username) {
-        alert("Stop.");
         userService.logout();
       } else if (editProf.profile === "") {
         editProf.profile = "http://www.cs.colostate.edu/~bplungis/Proj4/Users/Mplungis/images/pic.jpg";
@@ -129,8 +133,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // pending follow methods
     
-    // shared methods
-    
     $scope.removeRequest = function(user, followRequester, index){
       // remove followRequester from user's requests
       user.pendingFollowRequestPop.splice(index, 1);
@@ -189,6 +191,14 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
           userService.updateUser(followRequester.username, followRequester);
         });
       }
+    };
+
+    $scope.unfollow = function(user, unfollowUser){
+      userService.getSingleUser(user).then(function(userRes){
+        userService.getSingleUser(unfollowUser).then(function(unfollowUserRes){
+          
+        });
+      });
     };
   }
 ]);
