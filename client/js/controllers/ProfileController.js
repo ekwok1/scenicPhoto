@@ -219,5 +219,56 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
         });
       }
     };
+
+    $scope.unfollow = function(user, followed){
+      if (currentUser.username !== user) {
+        userService.logout();
+      } else {
+        userService.getSingleUser(user).then(function(userRes){
+          userService.getSingleUser(followed).then(function(followedRes){
+            var userId = userRes._id;
+            var followedId = followedRes._id;
+            for (i=0; i<userRes.following.length; i++){
+              if (userRes.following[i]._id === followedId){
+                userRes.following.splice(i, 1); break;
+              }
+            }
+            for (i=0; i<followedRes.followers.length; i++){
+              if (followedRes.followers[i]._id === userId){
+                followedRes.followers.splice(i, 1); break;
+              }
+            }
+            $scope.user = followedRes;
+            userService.updateUser(user, userRes).then(function(){
+              userService.updateUser(followed, followedRes);
+            });
+          });
+        });
+        $scope.view.showUnfollow = false;
+        $scope.view.showFollow = true;
+      }
+    };
   }
 ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

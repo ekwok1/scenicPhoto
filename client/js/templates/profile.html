@@ -83,7 +83,7 @@
           <th ng-show="view.showPending"><button class="btn btn-default btn-block disabledButton" ng-disabled="true">Follow Request Pending</button></th>
 
           <!-- unfollow button -->
-          <th ng-show="view.showUnfollow"><button class="btn btn-default btn-block">Unfollow</button></th>
+          <th ng-show="view.showUnfollow"><button class="btn btn-default btn-block" ng-click="unfollow(currentUser.username, user.username)">Unfollow</button></th>
 
         </thead>
       </table>
@@ -91,6 +91,7 @@
   </div>
 
   <div class="col-sm-8">
+    {{test}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
