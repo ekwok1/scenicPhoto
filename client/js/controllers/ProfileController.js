@@ -87,33 +87,28 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     // follow button
     $scope.followReq = function(self, username){
-      userService.getSingleUser(self).then(function(selfReq){
-        userService.getSingleUser(username).then(function(usernameReq){
+      userService.getSingleUser(self).then(function(selfRes){
+        userService.getSingleUser(username).then(function(usernameRes){
           var sent = false;
-          for (i=0; i<selfReq.pendingFollowing.length; i++){
-            if (selfReq.pendingFollowing[i] === usernameReq._id) {
+          for (i=0; i<selfRes.pendingFollowing.length; i++){
+            if (selfRes.pendingFollowing[i] === usernameRes._id) {
               sent = true; break;
             }
           }
-
           if (!sent) {
-
             // push follow request to friend
-            followService.deleteFields(selfReq);
-            usernameReq.pendingFollowRequest.push(selfReq);
-            usernameReq.pendingFollowRequestPop.push(selfReq);
-            $scope.user.pendingFollowRequest.push(selfReq._id);
-            $scope.user.pendingFollowRequestPop.push(selfReq._id);
-            userService.updateUser(usernameReq.username, usernameReq).then(function(){
+            followService.deleteFields(selfRes);
+            usernameRes.pendingFollowRequest.push(selfRes);
+            usernameRes.pendingFollowRequestPop.push(selfRes);
+            $scope.user.pendingFollowRequest.push(selfRes._id);
+            $scope.user.pendingFollowRequestPop.push(selfRes._id);
+            userService.updateUser(usernameRes.username, usernameRes).then(function(){
               // push follow request to self
-              followService.deleteFields(usernameReq);
-              delete usernameReq.pendingFollowRequest;
-              delete usernameReq.pendingFollowRequestPop;
-              selfReq.pendingFollowing.push(usernameReq);
-              userService.updateUser(selfReq.username, selfReq).then(function(){
-                $scope.test = selfReq;
-                $scope.test2 = usernameReq;
-              });
+              followService.deleteFields(usernameRes);
+              delete usernameRes.pendingFollowRequest;
+              delete usernameRes.pendingFollowRequestPop;
+              selfRes.pendingFollowing.push(usernameRes);
+              userService.updateUser(selfRes.username, selfRes);
             });
           }
         });
@@ -141,11 +136,26 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       // save to db
     };
 
-    $scope.rejectFollow = function(self, followRequester, index){
-      // remove followRequester from pendingFollowRequest(Pop) arrays
-      // remove self from followRequester's pendingFollowing array
-      // save to db
-
+    $scope.rejectFollow = function(user, followRequester, index){
+      if (currentUser.username !== user.username) {
+        userService.logout();
+      } else {
+        followRequester = followRequester[index];
+        
+        // remove followRequester from user's requests
+        user.pendingFollowRequestPop.splice(index, 1);
+        user.pendingFollowRequest.splice(index, 1);
+        $scope.user.pendingFollowRequestPop.splice(index, 1);
+        $scope.user.pendingFollowRequest.splice(index, 1);
+        // remove user from followRequester's requests
+        var followId = followRequester._id;
+        var idx = followRequester.pendingFollowing.indexOf(followId);
+        followRequester.pendingFollowing.splice(idx, 1);
+        // save to db
+        userService.updateUser(user.username, user).then(function(test){
+          userService.updateUser(followRequester.username, followRequester);
+        });
+      }
     };
   }
 ]);

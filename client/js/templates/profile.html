@@ -146,7 +146,11 @@
     <!-- see my following -->
 
     <!-- see my pending following -->
-    {{user}}
+    {{test}}
+    <br>
+    <br>
+    <br>
+    {{test2}}
     <div class="col-sm-4">
       <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending track by $index">
         <div class="panel-heading">
@@ -158,7 +162,7 @@
             <button class="btn btn-success" ng-click="acceptFollow(user, user.pendingFollowRequestPop, $index)">Accept</button>
           </div>
           <div class="col-sm-6">
-            <button class="btn btn-danger">Reject</button>
+            <button class="btn btn-danger" ng-click="rejectFollow(user, user.pendingFollowRequestPop, $index)">Reject</button>
           </div>
         </div>
       </div>
