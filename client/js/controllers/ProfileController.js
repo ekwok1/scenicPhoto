@@ -259,8 +259,8 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
               }
             }
             userService.updateUser(user, userRes).then(function(){
-              userService.updateUser(followed, followedRes).then(function(){
-                $scope.user = followedRes;
+              userService.updateUser(followed, followedRes).then(function(followedResUpdate){
+                $scope.user = followedResUpdate;
               });
             });
           });
