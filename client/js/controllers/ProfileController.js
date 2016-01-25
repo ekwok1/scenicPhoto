@@ -143,20 +143,36 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       followRequester.pendingFollowing.splice(idx, 1);
     };
 
+    $scope.acceptFollowHelper = function(user){
+      var obj = {};
+      var keys = Object.keys(user);
+      keys.forEach(function(key){
+        if (key !== "followers"){
+          obj[key] = user[key];
+        }
+      });
+      return obj;
+    };
+
     $scope.acceptFollow = function(user, followRequester, index){
+
       if (currentUser.username !== user.username) {
         userService.logout();
       } else {
         followRequester = followRequester[index];
-        // remove requests from user model arrays
+        // remove requests from user model arrays and save to db
         $scope.removeRequest(user, followRequester, index);
-        // add follower/following statuses AND save to db
-        followService.deleteFieldsAcceptReq(followRequester);
-        user.followers.push(followRequester);
         userService.updateUser(user.username, user).then(function(userRes){
-          followService.deleteFieldsAcceptReq(userRes);
-          followRequester.following.push(userRes);
-          userService.updateUser(followRequester.username, followRequester);
+          userService.updateUser(followRequester.username, followRequester).then(function(followReqRes){
+            // add follower/following statuses and save to db
+            followService.deleteFieldsAcceptReq(followRequester);
+            delete followRequester.followers;
+            user.followers.push(followRequester);
+            userService.updateUser(user.username, user).then(function(){
+              followRequester.following.push($scope.acceptFollowHelper(user));
+              userService.updateUser(followRequester.username, followRequester);
+            });
+          });
         });
       }
     };

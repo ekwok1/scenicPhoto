@@ -29,7 +29,7 @@ app.service("userService", ['$http', '$window', '$location',
       },
       updateUser: function(username, updateUser){
         return $http.put("/api/users/"+username, updateUser).then(function(user){
-          return user.data;
+          return user.config.data;
         });
       }
     };
