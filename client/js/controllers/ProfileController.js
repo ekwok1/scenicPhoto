@@ -46,6 +46,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
       $scope.view.following = false;
+      $scope.view.followers = false;
     };
 
     // edit form
@@ -79,6 +80,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
       $scope.view.following = false;
+      $scope.view.followers = false;
     };
 
     // showing favorite photos
@@ -92,6 +94,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
       $scope.view.following = false;
+      $scope.view.followers = false;
     };
 
     // showing followers
@@ -105,6 +108,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showEditForm = false;
       $scope.view.pendingFollowInfo = false;
       $scope.view.following = false;
+      $scope.view.followers = false;
     };
 
     // showing following
@@ -118,6 +122,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
       $scope.view.pendingFollowInfo = false;
+      $scope.view.followers = false;
     };
 
     // pending follow display
@@ -131,9 +136,24 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = false;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
+      $scope.view.followers = false;
     };
 
-    // follow button
+    // showing followers
+    $scope.followers = user.followers;
+    $scope.view.followers = false;
+
+    $scope.toggleFollower = function(){
+      $scope.view.followers = true;
+      $scope.view.pendingFollowInfo = false;
+      $scope.view.following = false;
+      $scope.view.favPhotos = false;
+      $scope.view.allPhotos = false;
+      $scope.view.showEditForm = false;
+    };
+
+
+    // methods for follow/unfollow
     $scope.followReq = function(self, username){
       userService.getSingleUser(self).then(function(selfRes){
         userService.getSingleUser(username).then(function(usernameRes){

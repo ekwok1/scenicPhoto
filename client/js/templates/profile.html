@@ -51,7 +51,7 @@
       <!-- followers -->
       <table class="table">
         <thead>
-          <th class="tableValue">{{user.followers.length}} followers</th>
+          <th class="tableValue" ng-click="toggleFollower()">{{user.followers.length}} followers</th>
           <th class="tableValue" ng-show="view.showPendingRequest" ng-click="togglePendingFollowInfo()">{{user.pendingFollowRequest.length}} pending</th>
         </thead>
       </table>
