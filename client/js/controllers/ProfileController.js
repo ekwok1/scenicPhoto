@@ -46,6 +46,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = false;
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
+      $scope.view.following = false;
     };
 
     // edit form
@@ -78,6 +79,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.favPhotos = false;
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
+      $scope.view.following = false;
     };
 
     // showing favorite photos
@@ -90,6 +92,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showEditForm = false;
       $scope.view.pendingFollowInfo = false;
       $scope.view.followers = false;
+      $scope.view.following = false;
     };
 
     // showing followers
@@ -98,6 +101,20 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     $scope.toggleFollowers = function(){
       $scope.view.followers = true;
+      $scope.view.favPhotos = false;
+      $scope.view.allPhotos = false;
+      $scope.view.showEditForm = false;
+      $scope.view.pendingFollowInfo = false;
+      $scope.view.following = false;
+    };
+
+    // showing following
+    $scope.following = user.following;
+    $scope.view.following = false;
+
+    $scope.toggleFollowing = function(){
+      $scope.view.following = true;
+      $scope.view.followers = false;
       $scope.view.favPhotos = false;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
