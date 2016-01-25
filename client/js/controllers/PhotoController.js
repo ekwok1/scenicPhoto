@@ -19,7 +19,7 @@ app.controller('PhotosController',
         photoService.addStat(id, photo)
         .then(function(){
           user.likedPhotos.push(photo._id);
-          userService.updateUser(user._id, user);
+          userService.updateUser(user.username, user);
         });
       }
     };
@@ -31,7 +31,7 @@ app.controller('PhotosController',
         photoService.addStat(id, photo)
         .then(function(){
           user.likedPhotos.splice(index, 1);
-          userService.updateUser(user._id, user);
+          userService.updateUser(user.username, user);
         });
       }
     };
