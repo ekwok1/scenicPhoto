@@ -34,6 +34,8 @@ router.route("/:username")
       .populate('photos')
       .populate('favoritePhotosPop')
       .populate('pendingFollowRequestPop')
+      .populate('following')
+      .populate('followers')
       .exec(function(err, user){
         if (err) return res.status(500).send(err);
         if (!user) return res.status(401).send(err);

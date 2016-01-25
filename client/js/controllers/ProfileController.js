@@ -45,6 +45,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.allPhotos = false;
       $scope.view.favPhotos = false;
       $scope.view.pendingFollowInfo = false;
+      $scope.view.followers = false;
     };
 
     // edit form
@@ -76,6 +77,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showEditForm = false;
       $scope.view.favPhotos = false;
       $scope.view.pendingFollowInfo = false;
+      $scope.view.followers = false;
     };
 
     // showing favorite photos
@@ -84,6 +86,19 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
 
     $scope.toggleFavPhotos = function(){
       $scope.view.favPhotos = true;
+      $scope.view.allPhotos = false;
+      $scope.view.showEditForm = false;
+      $scope.view.pendingFollowInfo = false;
+      $scope.view.followers = false;
+    };
+
+    // showing followers
+    $scope.followers = user.followers;
+    $scope.view.followers = false;
+
+    $scope.toggleFollowers = function(){
+      $scope.view.followers = true;
+      $scope.view.favPhotos = false;
       $scope.view.allPhotos = false;
       $scope.view.showEditForm = false;
       $scope.view.pendingFollowInfo = false;
@@ -196,7 +211,7 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     $scope.unfollow = function(user, unfollowUser){
       userService.getSingleUser(user).then(function(userRes){
         userService.getSingleUser(unfollowUser).then(function(unfollowUserRes){
-          
+
         });
       });
     };
