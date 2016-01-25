@@ -151,8 +151,8 @@
     </div>
 
     <!-- see my followers -->
-    <div class="col-sm-4" ng-repeat="f in followers">
-      <div class="panel panel-primary" ng-show="view.followers">
+    <div class="col-sm-4" ng-repeat="f in followers" ng-show="view.followers">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title"><a ng-href="/users/{{f.username}}" class="photoTitle">{{f.username}}</a></h3>
         </div>
@@ -163,8 +163,8 @@
     </div>
 
     <!-- see my following -->
-    <div class="col-sm-4" ng-repeat="f in following">
-      <div class="panel panel-primary" ng-show="view.following">
+    <div class="col-sm-4" ng-repeat="f in following" ng-show="view.following">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title"><a ng-href="/users/{{f.username}}" class="photoTitle">{{f.username}}</a></h3>
         </div>
@@ -176,8 +176,8 @@
 
 
     <!-- see my pending following -->
-    <div class="col-sm-4" ng-repeat="p in pending track by $index">
-      <div class="panel panel-primary" ng-show="view.pendingFollowInfo">
+    <div class="col-sm-4" ng-repeat="p in pending" ng-show="view.pendingFollowInfo">
+      <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title"><a ng-href="/users/{{p.username}}" class="photoTitle">{{p.username}}</a></h3>
         </div>
@@ -191,7 +191,6 @@
           </div>
         </div>
       </div>
-      {{test}}
     </div>
 
 
