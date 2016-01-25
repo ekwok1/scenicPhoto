@@ -49,7 +49,7 @@
       </table>
 
       <!-- followers -->
-      <table class="table" ng-click="toggleFollowers()">
+      <table class="table">
         <thead>
           <th class="tableValue">{{user.followers.length}} followers</th>
           <th class="tableValue" ng-show="view.showPendingRequest" ng-click="togglePendingFollowInfo()">{{user.pendingFollowRequest.length}} pending</th>
@@ -81,9 +81,9 @@
           
           <!-- request pending -->
           <th ng-show="view.showPending"><button class="btn btn-default btn-block disabledButton" ng-disabled="true">Follow Request Pending</button></th>
-          
+
           <!-- unfollow button -->
-          <th ng-show="view.showUnfollow"><button class="btn btn-default btn-block" ng-click="unfollow(currentUser.username, user.username)">Unfollow</button></th>
+          <th ng-show="view.showUnfollow"><button class="btn btn-default btn-block">Unfollow</button></th>
 
         </thead>
       </table>
@@ -91,9 +91,6 @@
   </div>
 
   <div class="col-sm-8">
-  {{test}}
-  <br><br>
-  {{test2}}
     <!-- update personal information form -->
     <form class="form-horizontal" ng-show="view.showEditForm" ng-submit="edit(editProfile)">
       <fieldset>
@@ -179,8 +176,8 @@
 
 
     <!-- see my pending following -->
-    <div class="col-sm-4">
-      <div class="panel panel-primary" ng-show="view.pendingFollowInfo" ng-repeat="p in pending track by $index">
+    <div class="col-sm-4" ng-repeat="p in pending track by $index">
+      <div class="panel panel-primary" ng-show="view.pendingFollowInfo">
         <div class="panel-heading">
           <h3 class="panel-title"><a ng-href="/users/{{p.username}}" class="photoTitle">{{p.username}}</a></h3>
         </div>
@@ -194,6 +191,7 @@
           </div>
         </div>
       </div>
+      {{test}}
     </div>
 
 

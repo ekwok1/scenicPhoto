@@ -1,6 +1,5 @@
 app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 'userService', 'followService',
   function($scope, currentUser, user, $route, userService, followService){
-
     // from resolves
     $scope.currentUser = currentUser;
     $scope.user = user;
@@ -16,24 +15,24 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     if (currentUser.username === user.username) {
       $scope.view.showProfile = true;
       $scope.view.showPendingRequest = true;
-      $scope.view.showFollow = false;
-      $scope.view.showPending = false;
-      $scope.view.showUnfollow = false;
     } else {
-      $scope.view.showProfile = false;
-      if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
-        $scope.view.showPending = true;
-        $scope.view.showFollow = false;
-      } else {
-        $scope.view.showPending = false;
-      }
-
-      if (user.followers.indexOf(currentUser.id) !== -1){
-        $scope.view.showUnfollow = true;
-        $scope.view.showFollow = false;
-      } else {
-        $scope.view.showUnfollow = false;
+      if (user.followers.indexOf(currentUser.id) === -1){
         $scope.view.showFollow = true;
+      }
+      if (user.pendingFollowRequest.indexOf(currentUser.id) !== -1){
+        $scope.view.showFollow = false;
+        $scope.view.showPending = true;
+      }
+      var following = false;
+      for (i=0; i<user.followers.length; i++){
+        if (user.followers[i]._id === currentUser.id){
+          following = true; break;
+        }
+      }
+      if (following){
+        $scope.view.showFollow = false;
+        $scope.view.showPending = false;
+        $scope.view.showUnfollow = true;
       }
     }
 
@@ -121,6 +120,19 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.pendingFollowInfo = false;
     };
 
+    // pending follow display
+    $scope.pending = user.pendingFollowRequestPop;
+    $scope.view.pendingFollowInfo = false;
+
+    $scope.togglePendingFollowInfo = function(){
+      $scope.view.pendingFollowInfo = true;
+      $scope.view.following = false;
+      $scope.view.followers = false;
+      $scope.view.favPhotos = false;
+      $scope.view.allPhotos = false;
+      $scope.view.showEditForm = false;
+    };
+
     // follow button
     $scope.followReq = function(self, username){
       userService.getSingleUser(self).then(function(selfRes){
@@ -153,28 +165,12 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
       $scope.view.showPending = true;
     };
 
-    // pending follow display
-    $scope.view.pendingFollowInfo = false;
-    $scope.pending = $scope.user.pendingFollowRequestPop;
-    $scope.togglePendingFollowInfo = function(){
-      $scope.view.pendingFollowInfo = true;
-      $scope.view.favPhotos = false;
-      $scope.view.allPhotos = false;
-      $scope.view.showEditForm = false;
-    };
-
-    // pending follow methods
-    
     $scope.removeRequest = function(user, followRequester, index){
       // remove followRequester from user's requests
       user.pendingFollowRequestPop.splice(index, 1);
       user.pendingFollowRequest.splice(index, 1);
-      $scope.user.pendingFollowRequestPop.splice(index, 1);
-      $scope.user.pendingFollowRequest.splice(index, 1);
       // remove user from followRequester's requests
-      var followId = followRequester._id;
-      var idx = followRequester.pendingFollowing.indexOf(followId);
-      followRequester.pendingFollowing.splice(idx, 1);
+      followRequester.pendingFollowing.splice(index, 1);
     };
 
     $scope.acceptFollowHelper = function(user){
@@ -189,7 +185,6 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
     };
 
     $scope.acceptFollow = function(user, followRequester, index){
-
       if (currentUser.username !== user.username) {
         userService.logout();
       } else {
@@ -224,27 +219,5 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
         });
       }
     };
-
-    $scope.unfollow = function(user, unfollowUser){
-      userService.getSingleUser(user).then(function(userRes){
-        userService.getSingleUser(unfollowUser).then(function(unfollowUserRes){
-
-        });
-      });
-    };
   }
 ]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
