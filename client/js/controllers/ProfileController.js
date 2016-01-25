@@ -258,10 +258,11 @@ app.controller("ProfileController", ['$scope', 'currentUser', 'user', '$route', 
                 followedRes.followers.splice(i, 1); break;
               }
             }
-            userService.updateUser(user, userRes).then(function(userResUpdate){
-              $scope.user = userResUpdate;
-              $scope.following = userResUpdate.following;
-              userService.updateUser(followed, followedRes);
+            userService.updateUser(user, userRes).then(function(){
+              userService.updateUser(followed, followedRes).then(function(followedResUpdate){
+                $scope.user = followedResUpdate;
+                $scope.followers = followedResUpdate.followers;
+              });
             });
           });
         });
