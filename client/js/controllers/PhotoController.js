@@ -12,6 +12,9 @@ app.controller('PhotosController',
     $scope.view.showPhotoForm = false;
     $scope.view.pErrors = false;
 
+    // query
+    $scope.view.order = '-updated_at';
+
     // statistics functions
     $scope.like = function(id, photo){
       if (user.likedPhotos.indexOf(id) === -1){

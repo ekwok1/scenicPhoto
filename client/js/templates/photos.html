@@ -78,8 +78,32 @@
   <div class="col-sm-1"></div>
 
   <div class="col-sm-10">
+    <div class="row">
+      <!-- search and order -->
+      <!-- search bar -->
+      <div class="col-sm-5">     
+        <div class="form-group">
+          <label class="form-label">Search photofeed by username, title, or description...</label>
+          <input type="text" class="form-control" ng-model="view.query">
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <label class="form-label">Sort by: </label>
+        <select class="form-control" ng-model="view.order">
+          <option value="-updated_at">Newest to Oldest</option>
+          <option value="updated_at">Oldest to Newest</option>
+          <option value="title">A-Z</option>
+          <option value="-title">Z-A</option>
+          <option value="-numLikes">Most Likes</option>
+          <option value="-numFavs">Most Favorites</option>
+          <option value="-numComments">Most Comments</option>
+        </select>
+        <br>
+      </div>
+    </div>
+    
     <!-- panel for photofeed -->
-    <div class="panel panel-primary" ng-repeat="photo in photos track by $index">
+    <div class="panel panel-primary" ng-repeat="photo in photos | filter:view.query | orderBy:view.order track by $index">
       <div class="panel-heading">
         <a ng-href="/photos/{{photo._id}}" class="photoTitleLink"><span class="photoTitle">{{photo.title}}</span></a>
       </div>
